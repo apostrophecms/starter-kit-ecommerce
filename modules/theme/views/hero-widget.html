@@ -1,0 +1,155 @@
+{% import "theme:button.html" as buttons %}
+
+{#
+  widget: (object) required
+    caption: (string) optional caption for the hero widget
+    ctaPrimary: (object) optional
+      label: (string),
+      urlType: (string), 'custom' | 'page' | 'file' | 'category'
+      url: (string) URL if 'custom'
+      _page, _file, _category: (array)  conditional relations depending on urlType
+    ctaOutlined: (object) optional, same as 'ctaPrimary'
+    '_image' or 'image': (area, relationship)
+    dark: (boolean) required. Renders the first prototype (light text on darker filter on the background image) if dark is true. Renders the second prototype (dark text on light filter on the background image) if dark is false.
+#}
+
+{# Hero Full widget #}
+{% fragment full(widget) %}
+  {%- set attachment = apos.image.first(widget.image or widget._image) -%}
+  {%- set ctaPrimary = apos.theme.navItems([widget.ctaPrimary]) | first -%}
+  {%- set ctaOutlined = apos.theme.navItems([widget.ctaOutlined]) | first -%}
+  {% if widget.dark %}
+    {% set bgCls = ' bg-gray-800/60' %}
+    {% set h2Cls = ' prose-headings:text-white' %}
+    {% set pCls = ' prose-p:text-gray-100' %}
+    {% set captionCls = ' text-brand-300' %}
+    {% set onDarkBtn = true %}
+  {% else %}
+    {% set bgCls = ' bg-white/80' %}
+    {% set h2Cls = ' prose-headings:text-gray-800' %}
+    {% set pCls = ' prose-p:text-gray-600' %}
+    {% set captionCls = ' text-brand' %}
+  {% endif %}
+  {%- set h2Mt = ' prose-headings:mt-4' if widget.caption else '' -%}
+
+  <div class="relative isolate flex flex-wrap justify-center items-center rounded-md overflow-hidden">
+      {# applies image crop and focal point if exist #}
+      <img 
+        class="absolute -z-10 w-full h-full object-cover"
+        src="{{ apos.attachment.url(attachment, { size: 'full' }) }}" 
+        alt="{{ attachment._alt }}" 
+        {# attachment.srcset for the design system mocks andtesting #} 
+        srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}"
+        width="{{ apos.attachment.getWidth(attachment) }}" 
+        height="{{ apos.attachment.getHeight(attachment) }}" 
+        {% if apos.attachment.hasFocalPoint(attachment) %}
+        style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }}" 
+        {%- endif -%}
+        sizes="(max-width: 600px) 569px, 759px">
+    {# Content container #}
+    <div
+      class="py-20 px-6 lg:px-8 xl:px-16 w-full text-center overflow-hidden prose-headings:mx-auto prose-p:mx-auto prose-headings:text-center prose-headings:break-anywhere prose-p:text-center md:prose-headings:max-w-3xl md:prose-p:max-w-3xl prose-headings:mb-8 prose-p:m-0 prose-headings:text-5xl prose-headings:font-extrabold prose-p:break-anywhere prose-p:text-base lg:prose-headings:text-7xl lg:prose-headings:font-extrabold lg:prose-headings:leading-tight md:prose-p:text-lg{{ bgCls }}{{ h2Cls }}{{ pCls }}{{h2Mt}}">
+      {% if widget.caption %}
+        <span class="t-caption uppercase md:max-w-3xl{{captionCls}}">{{widget.caption}}</span>
+      {% endif %}
+      {{ rendercaller() }}
+      {% if widget.ctaPrimary.label or widget.ctaOutlined.label %}
+        <div class="flex flex-wrap justify-center gap-8 mt-8">
+          {% if ctaPrimary.label and ctaPrimary.url %}
+            {{ buttons.primary(
+              ctaPrimary.label,
+              href = ctaPrimary.url,
+              { large: true }
+            ) }}
+          {% endif %}
+          {% if ctaOutlined.label and ctaOutlined.url %}
+            {{ buttons.outlined(
+              ctaOutlined.label,
+              href = ctaOutlined.url,
+              { large: true, onDark: onDarkBtn }
+            ) }}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endfragment %}
+
+
+{#
+  widget: (object) required
+    caption: (string) optional caption for the hero widget
+    ctaPrimary: (object) optional
+      label: (string),
+      urlType: (string), 'custom' | 'page' | 'file' | 'category'
+      url: (string) URL if 'custom'
+      _page, _file, _category: (array)  conditional relations depending on urlType
+    ctaOutlined: (object) optional, same as 'ctaPrimary'
+    '_image' or 'image': (area, relationship)
+    imagePosition: (string) required. Default is left and renders the image on the left side of the hero-split widget. If imagePosition: right - renders the image on the right side.
+#}
+
+{# Hero Split widget #}
+{% fragment split(widget) %}
+  {%- set attachment = apos.image.first(widget.image or widget._image) -%}
+  {%- set ctaPrimary = apos.theme.navItems([widget.ctaPrimary]) | first -%}
+  {%- set ctaOutlined = apos.theme.navItems([widget.ctaOutlined]) | first -%}
+
+  {%- if widget.imagePosition === 'left' -%}
+    {%- set imageSide = ' lg:left-0' -%}
+    {%- set contentSide = ' lg:mr-0 lg:ml-auto' -%}
+  {% else %}
+    {%- set imageSide = ' lg:right-0' -%}
+    {%- set contentSide = ' lg:ml-0 lg:mr-auto' -%}
+  {%- endif -%}
+  {% set captionCls = ' text-brand-300 lg:text-brand' %}
+  {% set h2Cls = ' text-white lg:prose-headings:text-gray-800' %}
+  {% set pCls = ' text-white lg:prose-p:text-gray-700' %}
+  {%- set h2Mt = ' prose-headings:mt-4' if widget.caption else '' -%}
+
+  <div class="relative isolate flex flex-wrap justify-center overflow-hidden rounded-md">
+
+      <img 
+        title="{{ attachment.title }}" 
+        class="absolute -z-10 w-full h-full object-cover lg:w-1/3 rounded-md{{ imageSide }}"
+        src="{{ apos.attachment.url(attachment, { size: 'full' }) }}" 
+        alt="{{ attachment._alt }}" 
+        {# attachment.srcset for the design system mocks and testing #} 
+        srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}"
+        width="{{ apos.attachment.getWidth(attachment) }}" 
+        height="{{ apos.attachment.getHeight(attachment) }}" 
+        {% if apos.attachment.hasFocalPoint(attachment) %}
+        style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }}" 
+        {%- endif -%}
+        sizes="(max-width: 600px) 569px, 759px">
+    {# Content container #}
+    <div
+      class="
+      bg-gray-800/60 lg:bg-transparent py-20 px-6 lg:px-8 xl:px-16 w-full lg:w-2/3 text-center overflow-hidden prose-headings:mx-auto prose-p:mx-auto prose-headings:text-center prose-headings:break-anywhere prose-p:text-center md:prose-headings:max-w-3xl md:prose-p:max-w-3xl prose-headings:mb-8 prose-p:m-0 prose-headings:text-5xl prose-headings:font-extrabold prose-p:text-base lg:prose-headings:text-7xl lg:prose-headings:font-extrabold lg:prose-headings:leading-tight md:prose-p:text-lg{{contentSide}}{{ h2Cls }}{{ pCls }}{{h2Mt}}">
+      {% if widget.caption %}
+        <span class="t-caption uppercase text-center max-w-3xl{{ captionCls }}">{{widget.caption}}</span>
+      {% endif %}
+      {{ rendercaller() }}
+      {% if widget.ctaPrimary.label or widget.ctaOutlined.label %}
+        <div class="flex flex-wrap justify-center gap-4 xs:gap-8 mt-8">
+          {% if ctaPrimary.label and ctaPrimary.url %}
+            {{ buttons.primary(
+              ctaPrimary.label,
+              href = ctaPrimary.url,
+              { large: true }
+            ) }}
+          {% endif %}
+          {% if ctaOutlined.label and ctaOutlined.url %}
+            {{ buttons.outlined(
+              ctaOutlined.label,
+              href = ctaOutlined.url,
+              { large: true, mobileInverse: true }
+            ) }}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endfragment %}

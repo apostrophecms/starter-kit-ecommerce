@@ -1,0 +1,70 @@
+{
+  "name": "a3-ecommerce-starter",
+  "version": "1.0.0",
+  "description": "Apostrophe v3 eCommerce Starter Kit",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=production node app",
+    "dev": "npm run build:sprite && nodemon",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "mocha",
+    "lint": "eslint . --ext .js",
+    "build": "NODE_ENV=production npm run build:sprite && NODE_ENV=production node app @apostrophecms/asset:build",
+    "build:sprite": "./scripts/make-svg-sprite",
+    "build:ds": "node app @corllete/apos-ds-page-type:publish-assets",
+    "release": "npm install && npm run build && NODE_ENV=production node app @apostrophecms/migration:migrate"
+  },
+  "nodemonConfig": {
+    "delay": 1000,
+    "verbose": true,
+    "watch": [
+      "./app.js",
+      "./modules/**/*",
+      "./lib/**/*.js",
+      "./views/**/*.html",
+      "./colors/**/*.json"
+    ],
+    "ignoreRoot": [
+      ".git"
+    ],
+    "ignore": [
+      "public/uploads/",
+      "public/apos-frontend/*.js",
+      "data/",
+      "docs/",
+      "design-system-setup/",
+      "**/ui/apos/",
+      "**/ui/src/",
+      "**/ui/public/"
+    ],
+    "ext": "json, js, html, njk, scss, vue"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apostrophecms/starter-kit-ecommerce"
+  },
+  "author": "Corllete ltd.",
+  "license": "MIT",
+  "dependencies": {
+    "@apostrophecms/open-graph": "^1.2.1",
+    "@apostrophecms/seo": "^1.2.0",
+    "apostrophe": "^3.50.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "chai": "^4.3.7",
+    "chai-spies": "^1.0.0",
+    "css-loader": "^6.7.3",
+    "eslint": "^7.16.0",
+    "eslint-config-apostrophe": "^3.4.0",
+    "eslint-plugin-node": "^11.1.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.7",
+    "svgstore": "^3.0.1",
+    "tailwindcss": "^3.3.1",
+    "webpack-bundle-analyzer": "^4.8.0"
+  }
+}

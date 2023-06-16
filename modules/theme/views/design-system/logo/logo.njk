@@ -1,0 +1,26 @@
+{% extends dsPreview %}
+{% import "theme:logo.html" as logo %}
+
+{% block tagline %}
+  Site Logo
+{% endblock %}
+
+{% block previewSimple %}
+<div class="flex gap-10 items-center flex-wrap">
+  {{ logo.render(alt = 'Company Logo') }}
+  <div class="max-w-[140px]">{{ logo.render(alt = 'Company Logo') }}</div>
+</div>
+{% endblock %}
+
+{% block variants %}
+  <div class="mx-auto mb-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+    {% dscode 'njk' %}
+      {% import "theme:logo.html" as logo %}
+
+      {# default size #}
+      {{ logo.render(alt = 'Company Logo') }}
+      {# constrained by the container #}
+      <div class="max-w-[140px]">{{ logo.render(alt = 'Company Logo') }}</div>
+    {% enddscode %}
+  </div>
+{% endblock %}

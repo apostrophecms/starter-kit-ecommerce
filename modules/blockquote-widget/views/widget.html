@@ -1,0 +1,10 @@
+{%- import 'theme:blockquote.html' as bq -%}
+
+<section class="py-8 md:py-16">
+  {% if data.widget.sectionTitle %}
+    <h3 class="mx-auto mb-12 max-w-3xl text-center">{{ data.widget.sectionTitle }}</h3>
+  {% endif %}
+  {%- rendercall bq.render(data.widget) -%}
+    {%- area data.widget, 'content' -%}
+  {%- endrendercall -%}
+</section>

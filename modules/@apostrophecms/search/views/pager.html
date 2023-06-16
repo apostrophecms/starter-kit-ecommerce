@@ -1,0 +1,6 @@
+{% import '@apostrophecms/pager:macros.html' as pager %}
+{{ pager.render({
+  page: data.currentPage,
+  total: data.totalPages,
+  class: 'app-pager'
+}, data.url) }}

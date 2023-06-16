@@ -1,0 +1,7 @@
+{%- import 'theme:promo-widget.html' as promo -%}
+
+<section class="py-8 md:py-16">
+  {%- rendercall promo.render(data.widget) -%}
+    {%- area data.widget, 'content' -%}
+  {%- endrendercall -%}
+</section>

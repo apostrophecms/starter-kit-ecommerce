@@ -1,0 +1,45 @@
+{% extends dsPreview %}
+{% import "theme:card.html" as cards %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set storyData = apos.dsp.configData('molecules-card').category %}
+
+{% block tagline %}
+  Category Card
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+  {% render cards.category(storyData) %}
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+{% rendercall helpers.container('mb-10') %}
+  <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:card.html" as cards %}
+
+      {% render cards.category(storyData) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | jsonPretty }}{% enddscode %}
+  </div>
+
+  <h4 class="mt-10">No "available proucts" data</h4>
+    <p class="mt-5 mb-4">It works both when <code>productsAvailable</code> is 0 or <code>productsAvailable</code> is <code>null</code></p>
+    <div class="flex gap-8">
+      {% render cards.category(storyData | merge ({ productsAvailable: 0})) %}
+      {% render cards.category(storyData | merge ({ productsAvailable: null})) %}
+    </div>
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:card.html" as cards %}
+
+      {% render cards.category(storyData) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | merge ({ productsAvailable: 0}) | jsonPretty }}{% enddscode %}
+    </div>
+{% endrendercall %}
+{% endblock %}

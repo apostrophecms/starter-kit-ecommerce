@@ -1,0 +1,55 @@
+{% extends dsPreview %}
+{% import "theme:card.html" as cards %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set item = apos.dsp.configData('molecules-card').product %}
+{%- set item2 = item | merge ({title: 'Product2 Card Title'}) -%}
+{%- set item3 = item | merge ({title: 'Product3 Card Title', buyNowUrl:''}) -%}
+{%- set item4 = item | merge ({title: 'Product4 Card Title', pricePromo:null, buyNowUrl:''}) -%}
+{%- set item5 = item | merge ({title: 'Product5 Card Title'}) -%}
+{%- set item6 = item | merge ({title: 'Product6 Card Title'}) -%}
+{%- set item7 = item | merge ({title: 'Product7 Card Title'}) -%}
+{%- set items = [item, item2, item3, item4, item5, item6, item7]-%}
+
+
+{% block tagline %}
+  Different grid layouts for product cards on large screens - above 1280px
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+  {% render cards.productList(items) %}
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+{# container #}
+{% rendercall helpers.container() %}
+
+    {# Code grid - 2 cols #}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:card.html" as cards %}
+      {% render cards.productList(items) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ items | jsonPretty }}{% enddscode %}
+    </div>
+
+  <h4 class="mt-10">List of product cards in four columns on large screens - above 1280px</h4>
+	  <p class="mt-5 mb-4">If there is <code>condensed = true</code>, the cards will be displayed in four columns</p>
+    {% render cards.productList(items, condensed = true) %}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:card.html" as cards %}
+      {% render cards.productList(items, condensed = true) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ items | jsonPretty }}{% enddscode %}
+    </div>
+
+    {# ensure the story finishes with a nice spacing #}
+    <div class="my-10" />
+
+{% endrendercall %}
+{% endblock %}

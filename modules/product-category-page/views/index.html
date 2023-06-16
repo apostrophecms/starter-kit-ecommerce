@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% import 'theme:helpers.html' as helpers %}
+{% import "theme:heading.html" as heading %}
+{% import "theme:card.html" as cards %}
+
+{% block main %}
+  {% rendercall helpers.container() %}
+    {% render heading.render(data.page.title, data.page.tagline) %}
+
+    <section class="py-8 md:py-16">
+      {% set cats = apos.theme.maybeFilterEmptyCategories(data.pieces, data.global) %}
+      {% if not cats | length %}
+        <p class="text-center">{{ __t('app:noResults') }}</p>
+      {% else %}
+        {% render cards.categoryList(cats) %}
+      {% endif %}
+    </section>
+    
+    {% area data.page, 'main' %}
+  {% endrendercall %}
+{% endblock %}

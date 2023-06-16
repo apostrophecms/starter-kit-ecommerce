@@ -1,0 +1,56 @@
+{
+  "footerNav": [
+    {
+      "label": "About Us",
+      "urlType": "custom",
+      "url": "#link1"
+    },
+    {
+      "label": "Products",
+      "urlType": "page",
+      "_page": [
+        {
+          "_url": "#link2"
+        }
+      ]
+    },
+    {
+      "label": "Privacy Policy",
+      "urlType": "custom",
+      "url": "#link3"
+    },
+    {
+      "label": "Contact Us",
+      "urlType": "custom",
+      "url": "#link4"
+    }
+  ],
+  "footerSocial": [
+    {
+      "label": "Facebook",
+      "icon": "social-facebook",
+      "url": "#facebook"
+    },
+    {
+      "label": "Instagram",
+      "icon": "social-instagram",
+      "url": "#instagram"
+    },
+    {
+      "label": "Twitter",
+      "icon": "social-twitter",
+      "url": "#twitter"
+    },
+    {
+      "label": "Youtube",
+      "icon": "social-youtube",
+      "url": "#youtube"
+    },
+    {
+      "label": "LinkedIn",
+      "icon": "social-linkedin",
+      "url": "#linkedin"
+    }
+  ],
+  "brandName": "Company Name"
+}

@@ -1,0 +1,65 @@
+{% extends dsPreview %}
+{% import "theme:hero-widget.html" as hero %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set storyData = apos.dsp.configData('molecules-hero-widget').full %}
+
+{% block tagline %}
+  Hero Full
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+
+  {% rendercall hero.full(storyData) %}
+    <h1>some text here</h1>
+    <p>some text here</p>
+  {% endrendercall %}
+  
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+{% rendercall helpers.container() %}
+
+    {# Code grid - 2 cols #}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:hero-widget.html" as hero %}
+      {# Full page hero-widget, default - with dark background filter  #}
+      {% rendercall hero.full(storyData) %}
+      <h1>some text here</h1>
+      <p>some text here</p>
+    {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | jsonPretty }}{% enddscode %}
+    </div>
+
+    <h4 class="mt-10">Full page hero-widget</h4>
+    <p class="mt-5 mb-4">With light background filter, when <code>dark: false</code></p>
+    {% rendercall hero.full(storyData | merge ({ dark: false })) %}
+      <h1>New arrival from our collections</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.
+      </p>
+    {% endrendercall %}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:hero-widget.html" as hero %}
+    {# Full page hero-widget with light background filter when dark:false #}
+      {% rendercall hero.full(storyData | merge ({ dark: false })) %}
+      <h1>New arrival from our collections</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.
+      </p>
+    {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ story.data | jsonPretty }}{% enddscode %}
+    </div>
+
+  {# ensure the story finishes with a nice spacing #}
+  <div class="my-10" />
+
+{% endrendercall %}
+{% endblock %}

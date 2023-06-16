@@ -1,0 +1,135 @@
+{% extends dsPreview %}
+{% import "@corllete/apos-ds-page-type:components/story/colors.html" as colors %}
+
+{% block css %}
+<style>
+  .ds-color--set {
+    font-weight: 700;
+  }
+</style>
+{% endblock %}
+
+{% block tagline %}
+  Color Scheme
+{% endblock %}
+
+{% block preview %}
+  {% dssection 'Scheme' %}
+
+    {{ colors.palette([
+      [
+        {
+          name: "Brand", 
+          value: "bg-brand", 
+          color: "#fff"
+        }
+      ],
+      [
+        {
+          name: "Gray",
+          value: "bg-gray", 
+          color: "#000"
+        }
+      ]
+    ], { span: 12, detect: true, showClass: true }) }}
+  {% enddssection %}
+
+  {% dssection 'Palette' %}
+    {{ colors.palette([
+      [
+        {
+          value: "bg-brand-50", 
+          color: "#000"
+        },
+        {
+          value: "bg-brand-100", 
+          color: "#000"
+        },
+        {
+          value: "bg-brand-200", 
+          color: "#000"
+        },
+        {
+          value: "bg-brand-300", 
+          color: "#000"
+        },
+        {
+          value: "bg-brand-400", 
+          color: "#000"
+        },
+        {
+          value: "bg-brand-500", 
+          color: "#000"
+        },
+        {
+          value: "bg-brand-600", 
+          color: "#fff"
+        },
+        {
+          value: "bg-brand-700", 
+          color: "#fff"
+        },
+        {
+          value: "bg-brand-800", 
+          color: "#fff"
+        },
+        {
+          value: "bg-brand-900", 
+          color: "#fff"
+        },
+        {
+          value: "bg-brand-950", 
+          color: "#fff"
+        }
+      ],
+      [
+        {
+          value: "bg-gray-50", 
+          color: "#000"
+        },
+        {
+          value: "bg-gray-100", 
+          color: "#000"
+        },
+        {
+          value: "bg-gray-200", 
+          color: "#000"
+        },
+        {
+          value: "bg-gray-300", 
+          color: "#000"
+        },
+        {
+          value: "bg-gray-400", 
+          color: "#000"
+        },
+        {
+          value: "bg-gray-500", 
+          color: "#000"
+        },
+        {
+          value: "bg-gray-600", 
+          color: "#fff"
+        },
+        {
+          value: "bg-gray-700", 
+          color: "#fff"
+        },
+        {
+          value: "bg-gray-800", 
+          color: "#fff"
+        },
+        {
+          value: "bg-gray-900", 
+          color: "#fff"
+        },
+        {
+          value: "bg-gray-950", 
+          color: "#fff"
+        }
+      ]
+    ], { span: 12, detect: true, showClass: true }) }}
+
+  {% enddssection %}
+
+{% endblock %}

@@ -1,0 +1,396 @@
+{% extends dsPreview %}
+{% import "@corllete/apos-ds-page-type:components/story/type.html" as types %}
+
+{% block css %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+
+{% block tagline %}
+  Typography styles.
+{% endblock %}
+
+{% block preview %}
+{% dssection %}
+
+  {# display and headings START #}
+    {{ types.heading(
+      [
+        {
+          level: 1,
+          cls: 't-display',
+          label: 'Display',
+          className: 't-display',
+          truncate: false
+        }
+      ], 
+      { 
+        span: 12,
+        detect: true,
+        font: true,
+        details: true
+      }
+    ) }}
+    {{ types.heading(
+      [
+        {
+          level: 1,
+          label: 'Heading 1',
+          className: 'text-6xl font-extrabold',
+          truncate: false
+        }
+      ], 
+      { 
+        span: 12,
+        detect: true,
+        font: true,
+        details: true
+      }
+    ) }}
+    {{ types.heading(
+      [
+        {
+          level: 2,
+          label: 'Heading 2',
+          className: 'text-5xl font-extrabold',
+          truncate: false
+        }
+      ], 
+      { 
+        span: 12,
+        detect: true,
+        details: true
+      }
+    ) }}
+    {{ types.heading(
+      [
+        {
+          level: 3,
+          label: 'Heading 3',
+          className: 'text-4xl font-extrabold',
+          truncate: false
+        }
+      ], 
+      { 
+        span: 12,
+        detect: true,
+        font: true,
+        details: true
+      }
+    ) }}
+    {{ types.heading(
+      [
+        {
+          level: 4,
+          label: 'Heading 4',
+          className: 'text-3xl font-bold',
+          truncate: false
+        }
+      ], 
+      { 
+        span: 12,
+        detect: true,
+        details: true
+      }
+    ) }}
+    {{ types.heading(
+      [
+        {
+          level: 5,
+          label: 'Heading 5',
+          className: 'text-2xl font-bold',
+          truncate: false
+        }
+      ], 
+      { 
+        span: 12,
+        detect: true,
+        font: true,
+        details: true
+      }
+    ) }}
+    {{ types.heading(
+      [
+        {
+          level: 6,
+          label: 'Heading 6',
+          className: 'text-xl font-bold',
+          truncate: false
+        }
+      ], 
+      { 
+        span: 12,
+        detect: true,
+        font: true,
+        details: true
+      }
+    ) }}
+  {# display and headings END #}
+
+  {# 3 cols START #}
+  {{ types.custom([
+  {
+    cls: 't-subtitle',
+    label: 'Subtitle',
+    className: 't-subtitle'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    content: 'Lorem ipsum dolor sit amet',
+    line: true
+  }) }}
+
+
+  {{ types.custom([
+  {
+    cls: 't-caption',
+    label: 'Caption',
+    className: 't-caption'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    content: 'Lorem ipsum dolor sit amet',
+    line: true
+  }) }}
+  {# 3 cols END #}
+
+  {# 2 cols START #}
+  {{ types.paragraph([
+  {
+    cls: 'text-xs',
+    label: 'Text-xs',
+    className: 'text-xs'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  
+  {{ types.paragraph([
+  {
+    cls: 'text-xs font-bold',
+    label: 'Text-xs Bold',
+    className: 'text-xs font-bold'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  {# 2 cols END #}
+
+  {# 2 cols START #}
+  {{ types.paragraph([
+  
+  {
+    cls: 'text-sm',
+    label: 'Text-sm',
+    className: 'text-sm'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  
+  {{ types.paragraph([
+  {
+    cls: 'text-sm font-bold',
+    label: 'Text-sm Bold',
+    className: 'text-sm font-bold'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  {# 2 cols END #}
+
+  {# 2 cols START #}
+  {{ types.paragraph([
+  {
+    cls: 'text-base',
+    label: 'Text-base',
+    className: 'text-base'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  
+  {{ types.paragraph([
+  {
+    cls: 'text-base font-bold',
+    label: 'Text-base Bold',
+    className: 'text-base font-bold'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  {# 2 cols END #}
+
+
+  {# 2 cols START #}
+  {{ types.paragraph([
+  {
+    cls: 'text-lg',
+    label: 'Text-lg',
+    className: 'text-lg'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  
+  {{ types.paragraph([
+  {
+    cls: 'text-lg font-bold',
+    label: 'Text-lg Bold',
+    className: 'text-lg font-bold'
+  }
+  ], { 
+    span: 6,
+    details: true,
+    detect: true,
+    line: true,
+    small: true
+  }) }}
+  {# 2 cols END #}
+  
+  {# 3 cols START #}
+  {{ types.custom([
+  {
+    cls: 't-link',
+    label: 'Link',
+    tag: 'a',
+    className: 't-link'
+  }
+  ], {
+    span: 4,
+    details: true,
+    detect: true,
+    content: 'Lorem ipsum dolor sit amet',
+    fontStyle: true,
+    line: false,
+    tracking: false,
+    weight: false,
+    color: true
+  }) }}
+
+  {{ types.custom([
+  {
+    tag: 'pre'
+  }
+  ], { 
+    span: 4,
+    details: true,
+    detect: true,
+    content: 'Lorem ipsum dolor sit amet',
+    size: true,
+    font: true,
+    line: true,
+    color: true
+  }) }}
+
+    {{ types.custom([
+    {
+      tag: 'code'
+    }
+    ], { 
+      span: 4,
+      details: true,
+      detect: true,
+      content: 'Lorem ipsum dolor sit amet',
+      size: true,
+      font: true,
+      color: true
+    }) }}
+  {# 3 cols END #}
+    
+  {# 3 cols START #}
+    {{ types.custom([
+    {
+      tag: 'strong'
+    }
+    ], { 
+      span: 4,
+      details: true,
+      detect: true,
+      content: 'Lorem ipsum dolor sit amet',
+      line: false,
+      tracking: false,
+      color: false
+    }) }}
+    
+  {{ types.custom([
+  {
+    tag: 'em'
+  }
+  ], { 
+    span: 4,
+    details: true,
+    detect: true,
+    content: 'Lorem ipsum dolor sit amet',
+    fontStyle: true,
+    line: false,
+    tracking: false,
+    weight: false,
+    color: false
+  }) }}
+  
+  {{ types.custom([
+  {
+    tag: 'hr'
+  }
+  ], { 
+    span: 4,
+    details: false,
+    detect: false,
+    content: ' '
+  }) }}
+  {# 3 cols END #}
+
+  {# 3 cols START #}
+  {{ types.custom([
+  {
+    tag: 'blockquote'
+  }
+  ], { 
+    span: 4,
+    details: true,
+    detect: true,
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lectus sem morbi nisi a, maecenas. Nec dictum fermentum elit, pretium. Tincidunt nisl, posuere vestibulum nullam tempor, mus. Id bibendum facilisis commodo, eget amet aliquet mauris faucibus aliquam.',
+    line: false,
+    tracking: false,
+    weight: false,
+    color: true
+  }) }}
+  {# 3 cols END #}
+
+{% enddssection %}
+{% endblock %}

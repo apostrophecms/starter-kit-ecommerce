@@ -1,0 +1,41 @@
+{% import "theme:utils.html" as u %}
+{# A set of (mostly layout) helper fragments #}
+
+{# 
+  The container is defining the content horizontal (x) width and spacing.
+  It makes no assumptions about the vertical spacing (y).
+  Additional CSS classes can be passed via the `cls` argument.
+  // [1440px]
+  Usage: 
+  {% import theme:helpers as helpers %}
+  {% rendercall helpers.container('some class') %}
+    Your page header/body/footer comes here
+  {% endrendercall %}
+#}
+{% fragment container(cls) %}
+  <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 2xl:px-20 xl:max-w-screen-xl 2xl:max-w-screen-2xl {{ ' ' + cls if cls }}">
+    {{ rendercaller() }}
+  </div>
+{% endfragment %}
+
+{# 
+  The section is defining the content vertical spacing (y).
+  It makes no assumptions about the horizontal spacing (x).
+  Sections are meant to separate logical content parts while 
+  bringing a consistent vertical spacing.
+  When/if a content needs more spacing adjustments it 
+  should be done via an inside (inner wrapper) spacing.
+  `data` and `attrs` arguments can be passed to the section as data/any attributes.
+  Additional CSS classes can be passed via the `cls` argument.
+
+  Usage: 
+  {% import theme:helpers as helpers %}
+  {% rendercall helpers.section(cls='some class', data={...}, attrs={...}) %}
+    Your content blocks, widgets, etc come here.
+  {% endrendercall %}
+#}
+{% fragment section(cls = '', data = {}, attrs = {}) %}
+  <section class="mb-16{{ ' ' + cls if cls }}"{{ u.attrs(data, 'data-') }}{{ u.attrs(attrs, '') }}>
+    {{ rendercaller() }}
+  </section>
+{% endfragment %}

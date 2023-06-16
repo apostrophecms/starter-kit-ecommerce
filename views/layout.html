@@ -1,0 +1,41 @@
+{% extends data.outerLayout %}
+
+{% import "theme:header.html" as header %}
+{% import "theme:footer.html" as footer %}
+
+{% set title = data.piece.title or data.page.title %}
+{% block title %}
+  {{ title }}
+  {% if not title %}
+    {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
+  {% endif %}
+{% endblock %}
+
+{% block extraHead %}
+  {%- if data.global.favicon -%}
+  <link rel="icon" href="{{ data.global.favicon._url }}" />
+  {%- endif -%}
+{% endblock %}
+
+{% block beforeMain %}
+  <div class="app">
+    {% render header.render(
+      data.global, 
+      homeUrl = data.home._url, 
+      currentUrl = data.url
+    ) %}
+    <main>
+{% endblock %}
+
+{% block main %}{% endblock %}
+
+{% block afterMain %}
+    </main>
+    {% render footer.render(data.global, homeUrl = data.home._url) %}
+  </div>
+{% endblock %}
+
+{# Should be the same as your application layout #}
+{% block afterAposScripts %}
+  {% include "theme:icons.svg.html" %}
+{% endblock %}

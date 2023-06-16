@@ -1,0 +1,117 @@
+{% import "theme:button.html" as buttons %}
+
+{#
+widget: (object) required
+  title: (string) required title for the CTA image widget
+  ctaPrimary: (object) optional
+    label: (string),
+    urlType: (string), 'custom' | 'page' | 'file' | 'category'
+    url: (string) URL if 'custom'
+    _page, _file, _category: (array)  conditional relations depending on urlType
+  ctaOutlined: (object) optional, same as 'ctaPrimary'
+  _image: (array, relationship)
+#}
+
+{# render a CTA Image widget #}
+{% fragment image(widget) %}
+  {%- set attachment = apos.image.first(widget.image or widget._image) -%}
+  {%- set ctaPrimary = apos.theme.navItems([widget.ctaPrimary]) | first -%}
+  {%- set ctaOutlined = apos.theme.navItems([widget.ctaOutlined]) | first -%}
+    <div class="relative isolate flex justify-center rounded-md overflow-hidden bg-gray-800">
+      {# Image #}
+      <img 
+        class="absolute -z-10 w-full h-full object-cover opacity-40"
+        src="{{ apos.attachment.url(attachment, { size: 'full' }) }}" 
+        alt="{{ attachment._alt }}" 
+        {# attachment.srcset for the design system mocks and testing #} 
+        srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}"
+        width="{{ apos.attachment.getWidth(attachment) }}" 
+        height="{{ apos.attachment.getHeight(attachment) }}" 
+        {% if apos.attachment.hasFocalPoint(attachment) %}
+        style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }}" 
+        {%- endif -%}
+        sizes="(max-width: 600px) 569px, 759px">
+    {# Content container #}
+    <div
+      class="py-20 px-6 lg:px-8 xl:px-16 prose-p:text-gray-100 w-full overflow-hidden prose-headings:mx-auto prose-p:mx-auto prose-headings:text-center prose-headings:break-anywhere prose-p:text-center md:prose-headings:max-w-3xl md:prose-p:max-w-3xl prose-headings:mb-8 prose-p:m-0 prose-headings:text-4xl prose-headings:font-extrabold prose-p:text-base md:prose-headings:text-6xl md:prose-headings:font-extrabold md:prose-p:text-lg">
+        <h2 class="text-white">{{widget.title}}</h2>
+        <div class="mb-8 mx-auto max-w-[200px] h-[3px] rounded-full bg-brand-400"></div>
+      {{ rendercaller() }}
+      {% if widget.ctaPrimary.label or widget.ctaOutlined.label %}
+        <div class="flex flex-wrap justify-center gap-8 mt-8">
+          {% if ctaPrimary.label and ctaPrimary.url %}
+            {{ buttons.primary(
+            ctaPrimary.label,
+            href = ctaPrimary.url,
+            { large: true }
+            ) }}
+          {% endif %}
+          {% if ctaOutlined.label and ctaOutlined.url  %}
+            {{ buttons.outlined(
+            ctaOutlined.label,
+            href = ctaOutlined.url,
+            { large: true, onDark: true }
+            ) }}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endfragment %}
+
+{#
+widget: (object) required
+  title: (string) required title for the CTA solid widget
+  ctaPrimary: (object) optional
+    label: (string),
+    urlType: (string), 'custom' | 'page' | 'file' | 'category'
+    url: (string) URL if 'custom'
+    _page, _file, _category: (array)  conditional relations depending on urlType
+  ctaOutlined: (object) optional, same as 'ctaPrimary'
+  _image: (array, relationship)
+#}
+
+{# Render a CTA Solid widget #}
+{% fragment solid(widget) %}
+  {%- set ctaPrimary = apos.theme.navItems([widget.ctaPrimary]) | first -%}
+  {%- set ctaOutlined = apos.theme.navItems([widget.ctaOutlined]) | first -%}
+  {% if widget.renderType === "light" %}
+    {%- set bgCls = ' bg-brand-50 border border-brand-300' -%}
+    {%- set titleCls = ' text-gray-700' -%}
+    {%- set pCls = ' prose-p:text-gray-600' -%}
+    {%- set isOnDark = '' -%}
+    {%- set borderCls = ' bg-brand' -%}
+  {% else %}
+    {%- set bgCls = ' bg-brand-800' -%}
+    {%- set titleCls = ' text-white' -%}
+    {%- set pCls = ' prose-p:text-gray-100' -%}
+    {%- set isOnDark = 'true' -%}
+    {%- set borderCls = ' bg-brand-400' -%}
+  {% endif %}
+  <div class="relative isolate flex justify-center rounded-md overflow-hidden{{ bgCls }}">
+    <div
+      class="py-20 px-6 lg:px-8 xl:px-16 w-full overflow-hidden prose-headings:mx-auto prose-p:mx-auto prose-headings:text-center prose-headings:break-anywhere prose-p:text-center md:prose-headings:max-w-3xl md:prose-p:max-w-3xl prose-headings:mb-8 prose-p:m-0 prose-headings:text-4xl prose-headings:font-extrabold prose-p:text-base md:prose-headings:text-6xl md:prose-headings:font-extrabold md:prose-p:text-lg{{ pCls }}">
+        <h2 class="{{ titleCls }}">{{ widget.title }}</h2>
+        <div class="my-8 mx-auto max-w-[200px] h-[3px] rounded-full{{ borderCls }}"></div>
+      {{ rendercaller() }}
+      {% if widget.ctaPrimary.label or widget.ctaOutlined.label %}
+        <div class="flex flex-wrap justify-center gap-8 mt-8">
+          {% if ctaPrimary.label and ctaPrimary.url %}
+            {{ buttons.primary(
+            ctaPrimary.label,
+            href = ctaPrimary.url,
+            { large: true }
+            ) }}
+          {% endif %}
+          {% if ctaOutlined.label and ctaOutlined.url %}
+            {{ buttons.outlined(
+            ctaOutlined.label,
+            href = ctaOutlined.url,
+            { large: true, onDark: isOnDark }
+            ) }}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endfragment %}

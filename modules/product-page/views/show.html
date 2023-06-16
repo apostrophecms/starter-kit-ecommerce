@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% import 'theme:helpers.html' as helpers %}
+{% import "theme:heading.html" as heading %}
+{% import "theme:card.html" as cards %}
+{% import "theme:button.html" as buttons %}
+{% import "theme:gallery.html" as gallery %}
+
+{% set product = data.piece %}
+
+{% block main %}
+  {% rendercall helpers.container() %}
+    <section class="my-8 lg:my-16 relative flex flex-col lg:gap-x-16 lg:flex-row lg:justify-between rounded-md">
+      {# Title and Tagline for smaller than 1024px #}
+      <div class="block lg:hidden mb-8 max-w-3xl mx-auto text-center lg:text-left">
+        <h3 class="mt-8 lg:mt-0 text-gray-800 font-extrabold">{{ product.title }}</h3>
+        {%- if product.tagline-%}
+        <p class="text-gray-700 mt-6 lg:t-subtitle">{{product.tagline}}</p>
+        {%- endif -%}
+      </div>
+
+      {# Image #}
+      <div class="w-full lg:w-1/2">
+        {% render gallery.image([product.image] | concat(product._images)) %}
+      </div>
+
+      {# Content #}
+      <div class="lg:w-1/2 lg:ml-auto overflow-hidden">
+        {# Title and Tagline for smaller than 1024px #}
+        <div class="hidden lg:block max-w-3xl mx-auto text-center lg:text-left">
+          <h1 class="mt-8 lg:mt-0 text-gray-800 lg:text-5xl lg:font-extrabold ">{{ product.title }}</h1>
+          {%- if product.tagline-%}
+          <p class="text-gray-700 mt-6 lg:t-subtitle">{{product.tagline}}</p>
+          {%- endif -%}
+        </div>
+        
+        {# META #}
+        {%- if product.meta | length -%}
+          <div class="mt-8 lg:mt-16 flex flex-wrap gap-6 xs:flex-row justify-between order-3">
+            {%- for meta in product.meta-%}
+            <div class="flex flex-col gap-y-1">
+              <span class="text-xl font-bold text-gray-800">
+              {{meta.label}}
+              </span>
+              <span class="text-gray-700">
+              {{meta.value}}
+              </span>
+            </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {# PRICES #}
+        <div class="pt-8 mt-8 mb-8 border-t border-gray flex flex-col gap-y-1 items-center">
+          {%- if product.pricePromo -%}
+            <span class="sr-only">{{ __t('app:productOldPrice') }}</span>
+            <span class="text-gray-400 line-through text-2xl font-bold">
+            {{ __t('app:currency', { value: apos.theme.formatPrice(product.price) }) }}
+            </span>
+          {%- endif -%}
+          <span class="sr-only">{{ __t('app:productPrice') }}</span>
+          <span class="text-brand text-3xl font-bold">
+            {{ __t('app:currency', { value: apos.theme.formatPrice(product.pricePromo or product.price) }) }}
+          </span>
+          {%- if data.global.vatInfo | length -%}
+            <p class="text-gray-400">
+            {{data.global.vatInfo}}
+            </p>
+          {%- endif -%}
+        </div>
+
+        {%- if product.buyNowUrl -%}
+          {{ buttons.primary(
+            __t('app:productBuyNowUrl'),
+            href = product.buyNowUrl,
+            { large: true, cls: 'w-full mb-16' }
+          ) }}
+        {%- endif -%}
+
+        {# Data tabs #}
+        {%- if data.query.specs -%}
+          {%- set detailsBtnCls = ' border-b-0' -%}
+          {%- set detailsTabCls = ' hidden' -%}
+          {%- set specsBtnCls = ' border-b-2 border-brand font-bold' -%}
+          {%- set specsTabCls = '' -%}
+        {%- else -%}
+          {%- set detailsBtnCls = ' border-b-2 border-brand font-bold' -%}
+          {%- set detailsTabCls = ' ' -%}
+          {%- set specsBtnCls = ' border-b-0' -%}
+          {%- set specsTabCls = ' hidden' -%}
+        {%- endif -%}
+        {%- if product._edit or product.details.items | length or product.specs | length -%}
+          <div data-app-tabs>
+            <div class="flex border-b border-gray">
+              {%- if product.details.items | length or product._edit -%}
+                <a data-tab-target="details" class="block px-4 pb-6 text-xl text-gray-800{{detailsBtnCls}}" href="{{ product._url }}">
+                  {{__t('app:productDetailsLabel')}}
+                </a>
+              {%- endif -%}
+              {%- if product.specs | length -%}
+                <a data-tab-target="specs" class="block px-4 pb-6 text-xl text-gray-800{{specsBtnCls}}" href="{{ product._url | build({ specs: 1 }) }}">
+                  {{__t('app:productSpecsLabel')}}
+                </a>
+              {%- endif -%}
+            </div>
+            {%- if product._edit or product.details.items | length -%}
+              <div data-tab-content="details" class="{{detailsTabCls}}">
+                {% area product, 'details' %}
+              </div>
+            {%- endif -%}
+            {%- if product.specs | length -%}
+              <div data-tab-content="specs" class="mt-6 flex flex-col gap-y-8 sm:gap-y-4{{specsTabCls}}">
+                {%- for spec in product.specs -%}
+                  <div class="flex flex-col gap-y-2 sm:grid sm:grid-cols-3 sm:gap-3">
+                    <p class="font-bold sm:col-span-1">{{spec.label}}</p>
+                    {%- if spec.formatted -%}
+                      <div class="sm:col-span-2">{% area spec, 'desc' %}</div>
+                    {%- else -%}
+                      <p class="col-span-2">{{ spec.value }}</p>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>{# End Data tabs #}
+        {% endif %}
+      </div>{# END Content #}
+    </section>
+
+    {# Related Products #}
+    {%- if data.relatedProducts | length -%}
+      <section class="py-8 md:py-16">
+        {% render heading.render(__t('app:productRelatedProducts'), section = true) %}
+        <div class="mt-12">
+          {% render cards.productList(data.relatedProducts, condensed = true) %}
+        </div>
+      </section>
+    {%- endif -%}
+
+    {# Optional additional widgets  #}
+    {% area product, 'main' %}
+  {% endrendercall %}
+{% endblock %}

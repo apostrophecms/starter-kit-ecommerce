@@ -1,0 +1,23 @@
+
+/*
+Font families defined by this CSS:
+- "Inter var"  single-axis variable fonts for all modern browsers
+
+https://github.com/rsms/inter/releases/tag/v3.19
+*/
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: 'Regular';
+  src: url("/modules/theme/fonts/inter-roman.var.woff2?v=3.19") format("woff2");
+}
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+  font-named-instance: 'Italic';
+  src: url("/modules/theme/fonts/inter-italic.var.woff2?v=3.19") format("woff2");
+}

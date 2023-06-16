@@ -1,0 +1,61 @@
+{% import 'theme:button.html' as buttons %}
+{#
+  Render a promo widget.
+  widget: (object) required
+    image or _image: Apos area having image widget or image relationship
+    caption (string)
+    ctaPrimary: (object) optional
+      label: (string),
+      urlType: (string), 'custom' | 'page' | 'file' | 'category'
+      url: (string) URL if 'custom'
+      _page, _file, _category: (array)  conditional relations depending on urlType
+    ctaOutlined: (object) optional, same as 'ctaPrimary'
+    imagePosition: (string) 'left' or 'right', default 'left'
+#}
+{% fragment render(widget) %}
+  {%- set onRight = true if widget.imagePosition === 'right' -%}
+  {%- set attachment = apos.image.first(widget.image or widget._image) -%}
+  {%- set imagePos = ' lg:inset-x-1/2' if onRight else ' lg:left-0 lg:right-1/2' -%}
+  {%- set contentPos = ' lg:mr-auto' if onRight else ' lg:ml-auto' -%}
+  {%- set ctaPrimary = apos.theme.navItems([widget.ctaPrimary]) | first -%}
+  {%- set ctaOutlined = apos.theme.navItems([widget.ctaOutlined]) | first -%}
+  <div class="relative isolate lg:flex lg:justify-center border border-gray rounded-md overflow-hidden">
+    {# Image #}
+      <img
+        class="absolute -z-10 w-full lg:w-1/2 h-full object-cover brightness-50 lg:brightness-100{{imagePos}}" 
+        src="{{ apos.attachment.url(attachment, { size: 'full' }) }}" 
+        alt="{{ attachment._alt }}" 
+        width="{{ apos.attachment.getWidth(attachment) }}" 
+        height="{{ apos.attachment.getHeight(attachment) }}" 
+        srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}" 
+        {% if apos.attachment.hasFocalPoint(attachment) %} 
+        style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }};"
+        {% endif %} 
+        sizes="(max-width: 600px) 569px, 759px">
+    {# Content #}
+    <div class="py-20 px-6 lg:px-8 xl:px-16 lg:w-1/2 text-center lg:text-left {{contentPos}}">
+      {%- if widget.caption -%}
+        <span class="t-caption text-brand-300 lg:text-brand-500 uppercase">{{ widget.caption }}</span>
+      {%- endif -%}
+      <div class="my-8 lg:mt-4 text-white lg:prose-headings:text-gray-800 lg:prose-p:text-gray-700 md:prose-headings:max-w-3xl md:prose-headings:mx-auto md:prose-p:max-w-3xl prose-headings:break-anywhere prose-p:mx-auto prose-headings:mb-8 prose-p:text-base prose-headings:text-4xl prose-headings:font-extrabold md:prose-headings:text-6xl md:prose-headings:font-extrabold md:prose-p:text-lg">
+        {{ rendercaller() }}
+      </div>
+      <div class="flex flex-wrap justify-center lg:justify-start gap-8">
+        {%- if ctaPrimary.label and ctaPrimary.url -%}
+          {{ buttons.primary(
+            ctaPrimary.label,
+            href = ctaPrimary.url,
+            { large: true }
+          ) }}
+        {%- endif -%}
+        {%- if ctaOutlined.label and ctaOutlined.url -%}
+          {{ buttons.outlined(
+            ctaOutlined.label,
+            href = ctaOutlined.url,
+            { large: true, mobileInverse: true }
+          ) }}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{% endfragment %}

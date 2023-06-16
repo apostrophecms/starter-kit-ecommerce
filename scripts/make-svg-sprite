@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+
+// Generate Nunjucks inline SVG sprite from
+// all available icons in `modules/theme/icons/`
+// to `modules/theme/views/icons.svg.html`.
+// Write a meta JSON file `modules/theme/icons/icons.svg.json`,
+// used to auto-build icon choices for the schema and optionally
+// a preview in the design system.
+
+const path = require('path');
+const fs = require('fs');
+const svgstore = require('svgstore');
+const _ = require('lodash');
+
+// --- CONFIGURE BELOW ---
+// Ignore svg's by name (e.g. ['logo.svg'])
+const ignoreIcons = [];
+// Copy attributes from the original svg to the symbol.
+// Can be set to `false` or array of attribute names.
+// `viewBox`, `aria-labelledby`, and `role` will be always copied
+const copyAttrs = [ 'fill', 'stroke-width', 'stroke' ];
+// Prefix for the id of the symbol. The filename will be appended.
+// If you change this you need to adapt the `icon.html` component as well.
+const idPrefix = 'theme-svg-icon-';
+// --- END CONFIGURE ---
+
+// Generally you should not need to edit below this line
+const iconPath = path.join(__dirname, '../modules/theme/icons');
+const spritePath = path.join(__dirname, '../modules/theme/views/icons.svg.html');
+const metaPath = path.join(__dirname, '../modules/theme/icons/icons.svg.json');
+
+// https://www.npmjs.com/package/svgstore#options
+const sprite = svgstore({
+  cleanDefs: true,
+  cleanSymbols: true,
+  copyAttrs
+});
+const config = [];
+
+const files = fs.readdirSync(iconPath);
+const icons = files
+  .filter(file => file.endsWith('.svg') && !ignoreIcons.includes(file));
+
+for (const icon of icons) {
+  const _name = icon.replace('.svg', '');
+  const name = `${idPrefix}${_name}`;
+  sprite.add(name, fs.readFileSync(path.join(iconPath, icon), 'utf8'));
+  config.push({
+    label: _.startCase(_name),
+    value: _name
+  });
+}
+
+// Write the template
+const template = `{# Auto generated, do not edit (see /scripts/make-svg-sprite) #}
+{% raw %}
+<div style="display: none">
+${sprite.toString({ inline: true })}
+</div>
+{% endraw %}
+`;
+fs.writeFileSync(spritePath, template);
+
+// Write the config
+config.sort((a, b) => {
+  if (a.label < b.label) {
+    return -1;
+  }
+  if (a.label > b.label) {
+    return 1;
+  }
+  return 0;
+});
+fs.writeFileSync(metaPath, JSON.stringify(config, null, 2), 'utf8');
+
+// eslint-disable-next-line no-console
+console.log(`Successfully built ${config.length} icons to sprite.`);

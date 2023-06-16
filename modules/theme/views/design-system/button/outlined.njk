@@ -1,0 +1,119 @@
+{% extends dsPreview %}
+
+{# The button macro #}
+{% import "theme:button.html" as buttons %}
+
+
+{# The component tagline #}
+{% block tagline %}
+  Outlined buttons
+{% endblock %}
+
+{# Preview of the component inside of `previewSimple` or `preview` block  #}
+{% block preview %}
+  <div class="flex gap-4 p-6 items-center justify-center flex-wrap">
+    {{ buttons.outlined('Default') }}
+    {{ buttons.outlined('Large', { large: true }) }}
+  </div>
+  <div class="bg-gray-950 flex gap-4 py-4 p-6 rounded-md items-center justify-center flex-wrap">
+    {{ buttons.outlined('Default', { onDark: true }) }}
+    {{ buttons.outlined('Large', { large: true, onDark: true }) }}
+  </div>
+  
+{% endblock %}
+
+{# The code block, followed by other variations of the component (if any). #}
+{% block variants %}
+{# container #}
+  <div class="mx-auto mb-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    {# Section code example #}
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+        {# outlined button #}
+        {{ buttons.outlined('Default') }}
+        {# outlined large button #}
+        {{ buttons.outlined('Large', { large: true }) }}
+
+        {# outlined button on dark background #}
+        {{ buttons.outlined('Default', { onDark: true }) }}
+        {# outlined large button on dark background #}
+        {{ buttons.outlined('Large', { large: true, onDark: true }) }}
+    {% enddscode %}
+
+    {# Variant disabled #}
+    <h4 class="mt-10">Disabled</h4>
+    <div class="flex gap-4 py-4 p-6 items-center justify-center flex-wrap">
+      {# outlined button, disabled #}
+      {{ buttons.outlined('Disabled', { disabled: true }) }}
+    </div>
+    <div class="bg-gray-950 flex gap-4 py-4 p-6 items-center justify-center flex-wrap">
+      {# outlined button, disabled, onDark #}
+      {{ buttons.outlined('Disabled', { onDark: true, disabled: true }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {{ buttons.outlined('Disabled', { disabled: true }) }}
+      {{ buttons.outlined('Disabled', { onDark: true, disabled: true }) }}
+    {% enddscode %}
+
+    {# Variant CTA #}
+    <h4 class="mt-10">CTA</h4>
+    <div class="flex gap-2">
+      <div class="flex gap-2 rounded-md items-center p-6">
+        {{ buttons.outlined('I am CTA!', href = '#', { disabled: true }) }}
+      </div>
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {{ buttons.outlined('Default', href = '#') }}
+    {% enddscode %}
+
+    {# Variant standard attributes #}
+    <h4 class="mt-10">HTML attributes</h4>
+    <div class="flex gap-2 items-center p-6">
+        {{ buttons.outlined('With name and ID', href = '#', { 
+        attr: { name: 'my-button', id: 'my-button-id' } 
+      }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {{ buttons.outlined('With name and ID', { 
+        attr: { name: 'my-button', id: 'my-button-id' } 
+      }) }}
+    {% enddscode %}
+
+    {# Variant aria attributes #}
+    <h4 class="mt-10" id="button-aria-label">Aria attributes</h4>
+    <div class="flex gap-2 p-6">
+      {{ buttons.outlined('Aria Labeled By', { 
+        aria: { labelledby: 'button-aria-label', hidden: 'false' } 
+      }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {# aria-labeledby - points to the element with ID which is the label #}
+      {# aria-hidden like all aria booleans should have STRING "true" #}
+      {{ buttons.outlined('Aria Labeled By', { 
+        aria: { labelledby: 'button-aria-label', hidden: 'false' } 
+      }) }}
+    {% enddscode %}
+
+    {# Variant data attributes #}
+    <h4 class="mt-10">Data attributes</h4>
+    <div class="flex gap-2 p-6">
+      {{ buttons.outlined('My data value', { 
+        data: { my: 'data value', secret: true } 
+      }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {{ buttons.outlined('My data value', {
+        data: { my: 'data value', secret: true } 
+      }) }}
+    {% enddscode %}
+  </div>
+
+    {# ensure the story finishes with a nice spacing #}
+  <div class="my-10" />
+{% endblock %}

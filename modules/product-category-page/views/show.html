@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% import 'theme:helpers.html' as helpers %}
+{% import "theme:heading.html" as heading %}
+{% import "theme:card.html" as cards %}
+{% import '@apostrophecms/pager:macros.html' as pager with context %}
+
+{% block main %}
+  {% rendercall helpers.container() %}
+    {% if data.piece.headerType === 'widget' %}
+      {% area data.piece, 'heading' %}
+    {% else %}
+      {% render heading.render(data.piece.title, data.piece.tagline) %}
+    {% endif %}
+
+    <section class="py-8 md:py-16">
+      {% if not data.pieces | length %}
+        <p class="text-center">{{ __t('app:productNoResults') }}</p>
+      {% else %}
+        {% render cards.productList(data.pieces) %}
+      {% endif %}
+
+      {{ pager.render({
+        page: data.currentPage,
+        total: data.totalPages,
+        class: 'app-pager' 
+      }, data.url) }}
+    </section>
+    {% area data.piece, 'main' %}
+  {% endrendercall %}
+{% endblock %}

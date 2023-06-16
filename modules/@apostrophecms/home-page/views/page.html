@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% import 'theme:helpers.html' as helpers %}
+
+{% block main %}
+  {% rendercall helpers.container() %}
+    {% area data.page, 'heading' %}
+    {% area data.page, 'main' %}
+  {% endrendercall %}
+{% endblock %}

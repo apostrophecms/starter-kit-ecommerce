@@ -1,0 +1,168 @@
+{% import "theme:button.html" as buttons %}
+
+{#
+  item:
+    title: (string)
+    _url: (string)
+    price: (float), required - price of the product
+    pricePromo: (float), optional - promo price of the product
+    buyNowUrl: (url, string) optional - leading to buyNow}
+    image  or _image: (area or relationship)
+  wide: (boolean) indicates if the product should span two columns on larger screens (default: false)
+#}
+
+{# For the full schema of the item argument see product schema. #}
+{% fragment product(item, wide = false) %}
+  {%- set priceFormat = ' text-lg font-bold text-gray-400 line-through' if item.pricePromo else ' text-xl font-bold text-brand' -%}
+  {%- set attachment = apos.image.first(item.image or item._image or {}) or {} -%}
+  {%- set span = ' xl:col-span-2' if wide else '' -%}
+  <div class="relative flex flex-col w-full bg-white border border-gray rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand focus-within:ring-offset-2 focus-within:ring-offset-white{{span}}">
+      <img 
+        class="w-full h-[332px] object-cover" 
+        src="{{ apos.attachment.url(attachment, { size: 'full' }) }}" 
+        alt="{{ attachment._alt }}" 
+        width="{{ apos.attachment.getWidth(attachment) }}" 
+        height="{{ apos.attachment.getHeight(attachment) }}" 
+        srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}" 
+        {% if apos.attachment.hasFocalPoint(attachment) %} 
+        style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }};"
+        {% endif %} 
+        sizes="(max-width: 600px) 569px, 759px">
+
+    <h6 class="px-4 text-gray-800 line-clamp-3 md:line-clamp-2 font-medium text-center xs:text-left mt-6">{{ item.title }}</h6>
+    <div class="px-4 py-6 flex flex-col grow">
+      <div class="flex flex-col grow gap-y-6 xs:flex-row gap-x-4 lg:flex-wrap lg:content-end overflow-hidden justify-between item-center xs:items-end">
+        <div class="flex flex-col items-center xs:flex-row gap-2 xs:items-baseline">
+          {%- if item.pricePromo -%}
+            <span class="text-xl font-bold text-brand">{{ __t('app:currency', { value: apos.theme.formatPrice(item.pricePromo) }) }}</span>
+          {%- endif -%}
+          <span class="{{ priceFormat }}">
+            {{ __t('app:currency', { value: apos.theme.formatPrice(item.price) }) }}
+          </span>
+        </div>
+        {%- if item.buyNowUrl -%}
+          {{ buttons.primary(
+            __t('app:productBuyNowUrl'), 
+            href=item.buyNowUrl, 
+            { cls:'z-10' }
+          ) }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    {# Link cover #}
+    <a 
+      title="{{ item.title }}" 
+      href="{{ item._url }}"
+      aria-label="{{ __t('app:productCardAria', { value: item.title }) }}"
+      class="absolute inset-0 focus:outline-none"
+    >
+    </a>
+  </div>
+{% endfragment %}
+
+
+{#
+  title: (string)
+  _url: (string)
+  _productCount: (integer), optional - how many products of this category are available
+  image or _image: (area or relationship)
+#}
+{# For the full schema of the item argument see product-category schema. #}
+{% fragment category(item) %}
+  {%- set availability = __t('app:productsAvailable', { value: item._productCount })  if item._productCount and item._productCount > 0 else '' -%}
+  {%- set attachment = apos.image.first(item.image or item._image or {}) or {} -%}
+  <div 
+    class="relative flex flex-col w-full bg-white rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand focus-within:ring-offset-2 focus-within:ring-offset-white"
+  >
+      {# Image #}
+      <img 
+        class="w-full h-80 object-cover rounded-md" 
+        src="{{ apos.attachment.url(attachment, { size: 'full' }) }}" 
+        alt="{{ attachment._alt }}" 
+        {# attachment.srcset for the design system mocks and testing #}
+        srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}"
+        width="{{ apos.attachment.getWidth(attachment) }}"
+        height="{{ apos.attachment.getHeight(attachment) }}"
+        {% if apos.attachment.hasFocalPoint(attachment) %}
+          style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }}"
+        {%- endif -%}
+        sizes="(max-width: 600px) 569px, 759px"
+      >
+
+    {# Content container #}
+      <div class="flex flex-col flex-grow">
+        <h5 class="text-gray-800 line-clamp-3 md:line-clamp-2 text-center mt-5">{{ item.title }}</h5>
+        {%- if availability -%}
+          <p class="text-gray-600 text-center mt-1">{{availability}}</p>
+        {%- endif -%}
+      </div>
+
+    {# Link cover #}
+    <a 
+      title="{{ item.title }}" 
+      href="{{ item._url }}"
+      aria-label="{{ __t('app:productCardAria', { value: item.title }) }}"
+      class="absolute inset-0 focus:outline-none"
+    >
+    </a>
+  </div>
+{% endfragment %}
+
+
+{#
+  items: (array) array of items to generate the cards with
+  condensed: (boolean) if true - the product cards will be on 3 columns when screen size is above 1280px. Default is false - the product cards will be on four columns
+#}
+{% fragment productList(items, condensed = false) %}
+  {%- set cols = ' xl:grid-cols-4' if condensed else ' xl:grid-cols-3' -%}
+  <div class="grid gap-8 grid-cols-1 md:grid-cols-2{{ cols }}">
+    {% for item in items %}
+      {% rendercall product(item) %}
+      {% endrendercall %}
+    {% endfor %}
+  </div>
+{% endfragment %}
+
+
+{#
+  items: (array) array of items to generate the cards with
+#}
+{% fragment categoryList(items) %}
+  <div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+    {% for item in items %}
+      {% rendercall category(item) %}
+      {% endrendercall %}
+    {% endfor %}
+  </div>
+{% endfragment %}
+
+
+{# 
+  items: (array) array of items to generate the cards with
+#}
+{% fragment productListMasonry(items) %}
+  {% set c = cycler(true, false) %}
+  <div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+  {% for row in items | slice(items.length/2 | round) %}
+    {% if c.next() %} 
+      {% rendercall product(row[0]) %}
+      {% endrendercall %}
+      {# check if there is row[1] and row[1] receives wide = true #}
+      {% if row[1] %}
+        {% rendercall product(row[1], wide = true) %}
+        {% endrendercall %}
+      {% endif %}
+    {% else %}
+      {# row[0] receives wide = true #}
+      {% rendercall product(row[0], wide = true) %}
+      {% endrendercall %}
+      {# check if there is row[1] #}
+      {% if row[1] %}
+        {% rendercall product(row[1]) %}
+        {% endrendercall %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endfragment %}

@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "apostrophe"
+  ],
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "apos": true
+  },
+  "rules": {
+    "no-var": "error",
+    "no-console": 0
+  }
+}

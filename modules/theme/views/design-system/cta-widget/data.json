@@ -1,0 +1,76 @@
+{
+  "image": {
+    "title": "Get inspired by our new catalogue",
+    "ctaPrimary": 
+    {
+      "label": "Download",
+      "urlType": "custom",
+      "url": "#urlCtaPrimary"
+    }
+  ,
+  "ctaOutlined": {
+      "label": "Explore",
+      "urlType": "page",
+      "_page": [
+      {
+        "_url": "#_page_urlCtaOutlined"
+      }
+    ]
+  },
+    "_image": [
+      {
+        "_id": "clgyx91c9000s3eh9b9ji3dto:en:draft",
+        "attachment": {
+          "_id": "clgyx90ed000p3eh97uy897xp",
+          "group": "images",
+          "name": "some-image",
+          "title": "some image",
+          "extension": "jpg",
+          "type": "attachment",
+          "width": 1800,
+          "height": 1350,
+          "_urls": {
+            "max": "https://picsum.photos/seed/image/1600/1200",
+            "full": "https://picsum.photos/seed/image/1140/850",
+            "two-thirds": "https://picsum.photos/seed/image/760/570",
+            "one-half": "https://picsum.photos/seed/image/570/428",
+            "one-third": "https://picsum.photos/seed/image/380/285",
+            "one-sixth": "https://picsum.photos/seed/image/190/143",
+            "original": "https://picsum.photos/seed/image/1800/1350"
+          },
+          "srcset": "https://picsum.photos/seed/image/1600/1200 1600w, https://picsum.photos/seed/image/1140/850 1140w, https://picsum.photos/seed/image/760/570 760w, https://picsum.photos/seed/image/570/428 570w, https://picsum.photos/seed/image/380/285 380w, https://picsum.photos/seed/image/190/143 190w"
+
+        },
+        "title": "CTA Widget image",
+        "alt": "CTA Widget alt",
+        "slug": "image-laptop2",
+        "archived": false,
+        "type": "@apostrophecms/image",
+        "aposLocale": "en:draft",
+        "aposMode": "draft",
+        "aposDocId": "clgyx91c9000s3eh9b9ji3dto",
+        "metaType": "doc",
+        "visibility": "public"
+      }
+    ]
+  },
+  "solid": {
+    "title": "Get inspired by our new catalogue",
+    "ctaPrimary": 
+    {
+      "label": "Download",
+      "urlType": "custom",
+      "url": "#urlCtaPrimary"
+    }
+  ,
+  "ctaOutlined": {
+      "label": "Explore",
+      "urlType": "page",
+      "_page": [
+      {
+        "_url": "#_page_urlCtaOutlined"
+      }
+    ]
+    }
+  }
+}

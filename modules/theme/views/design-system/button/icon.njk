@@ -1,0 +1,111 @@
+{% extends dsPreview %}
+
+{# The button macro #}
+{% import "theme:button.html" as buttons %}
+
+
+{# The component tagline #}
+{% block tagline %}
+  Icon buttons
+{% endblock %}
+
+{# Preview of the component inside of `previewSimple` or `preview` block  #}
+{% block preview %}
+  <div class="mx-auto flex gap-4 p-6 items-center justify-center flex-wrap">
+    {{ buttons.icon('heart', size = 'xl') }}
+  </div>
+  <div class="bg-gray-950 flex gap-4 py-4 p-6 items-center justify-center flex-wrap">
+    {{ buttons.icon('heart', size = 'xl', { onDark: true }) }}
+  </div>
+  
+{% endblock %}
+
+{# The code block, followed by other variations of the component (if any). #}
+{% block variants %}
+{# container #}
+  <div class="mx-auto mb-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    {# Section code example #}
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+        {# Icon button #}
+        {{ buttons.icon('heart', size = 'xl') }}
+        {# Icon button on dark background #}
+        {{ buttons.icon('heart', size = 'xl', { onDark: true }) }}
+    {% enddscode %}
+
+    {# Variant disabled #}
+    <h4 class="mt-10">Disabled</h4>
+    <div class="flex gap-4 py-4 p-6 items-center justify-center flex-wrap">
+      {# Icon button, disabled #}
+      {{ buttons.icon('heart', size = 'xl', { disabled: true }) }}
+    </div>
+    <div class="bg-gray-950 flex gap-4 py-4 p-6 items-center justify-center flex-wrap">
+      {# Icon button, disabled, onDark #}
+      {{ buttons.icon('heart', size = 'xl', { onDark: true, disabled: true }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {{ buttons.icon('heart', size = 'xl', { disabled: true }) }}
+      {{ buttons.icon('heart', size = 'xl', { onDark: true, disabled: true }) }}
+    {% enddscode %}
+
+    {# Variant CTA #}
+    <h4 class="mt-10">CTA</h4>
+    <div class="flex gap-2">
+      <div class="flex gap-2 rounded-md items-center p-6">
+        {# Icon button as a link with href #}
+        {{ buttons.icon('heart', size = 'xl', href = '#') }}
+      </div>
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {# Icon button as a link with href #}
+      {{ buttons.icon('heart', size = 'xl', href = '#') }}
+    {% enddscode %}
+
+    {# Variant standard attributes #}
+    <h4 class="mt-10">HTML attributes</h4>
+    <div class="flex gap-2 items-center p-6">
+        {{ buttons.icon('heart', size = 'xl', href = '#', { 
+        attr: { name: 'my-button', id: 'my-button-id' } 
+      }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+        {{ buttons.icon('heart', size = 'xl', href = '#', { 
+        attr: { name: 'my-button', id: 'my-button-id' } 
+      }) }}
+    {% enddscode %}
+
+    {# Variant aria attributes #}
+    <h4 class="mt-10" id="button-aria-label">Aria attributes</h4>
+    <div class="flex gap-2 p-6">
+      {{ buttons.icon('heart', size = 'xl', { 
+        aria: { labelledby: 'button-aria-label', hidden: 'false' } 
+      }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {# aria-labeledby - points to the element with ID which is the label #}
+      {# aria-hidden like all aria booleans should have STRING "true" #}
+      {{ buttons.icon('heart', size = 'xl', { 
+        aria: { labelledby: 'button-aria-label', hidden: 'false' } 
+      }) }}
+    {% enddscode %}
+
+    {# Variant data attributes #}
+    <h4 class="mt-10">Data attributes</h4>
+    <div class="flex gap-2 p-6">
+      {{ buttons.icon('heart', size = 'xl', { 
+        data: { my: 'data value', secret: true } 
+      }) }}
+    </div>
+    {% dscode 'njk' %}
+      {% import "theme:button.html" as buttons %}
+      {{ buttons.icon('heart', size = 'xl', { 
+        data: { my: 'data value', secret: true } 
+      }) }}
+    {% enddscode %}
+  </div>
+{% endblock %}

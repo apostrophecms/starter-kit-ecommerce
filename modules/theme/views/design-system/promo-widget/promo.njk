@@ -1,0 +1,55 @@
+{% extends dsPreview %}
+{% import "theme:promo-widget.html" as promoWidget %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set storyData = apos.dsp.configData('molecules-promo-widget').promo %}
+
+{% block tagline %}
+  Promo Widget
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+    {% rendercall promoWidget.render(storyData) %}
+      <h2>Summer Sale</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+    {% endrendercall %}
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+{% rendercall helpers.container('mb-10') %}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:promo-widget.html" as promoWidget %}
+      
+      {% rendercall promoWidget.render(storyData) %}
+        <h2>Summer Sale</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+      {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | jsonPretty }}{% enddscode %}
+    </div>
+
+    <div class="mt-10">
+      {% rendercall promoWidget.render(storyData | merge({ imagePosition: 'right' })) %}
+        <h2>Summer Sale</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+      {% endrendercall %}
+    </div>
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:promo-widget.html" as promoWidget %}
+      
+      {% rendercall promoWidget.render(storyData) %}
+        <h2>Summer Sale</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+      {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | merge({ imagePosition: 'right' }) | jsonPretty }}{% enddscode %}
+    </div>
+{% endrendercall %}
+{% endblock %}

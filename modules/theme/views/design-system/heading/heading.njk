@@ -1,0 +1,35 @@
+{% extends dsPreview %}
+{% import "theme:heading.html" as heading %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set tagline = 'Pellentesque auctor neque nec urna. Quisque rutrum. Integer tincidunt. Praesent ut ligula non mi varius sagittis.' %}
+
+{% block tagline %}
+  Page/Section Heading
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+  {% render heading.render('Page title', tagline) %}
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+{% rendercall helpers.container('mb-10') %}
+  {% dscode 'njk' %}
+    {% import "theme:heading.html" as heading %}
+
+    {% render heading.render('Page title', tagline) %}
+  {% enddscode %}
+
+  <div class="mt-10">
+    {% render heading.render('Section title', tagline, section = true) %}
+    {% dscode 'njk' %}
+      {% import "theme:heading.html" as heading %}
+
+      {% render heading.render('Section title', tagline, section = true) %}
+    {% enddscode %}
+  </div>
+{% endrendercall %}
+{% endblock %}

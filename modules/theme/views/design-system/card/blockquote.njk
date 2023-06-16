@@ -1,0 +1,51 @@
+{% extends dsPreview %}
+{% import "theme:blockquote.html" as quote %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set storyData = apos.dsp.configData('molecules-card').blockquote %}
+
+{% block tagline %}
+  Customer Review (blockquote)
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+  {% rendercall quote.render(storyData) %}
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+  {% endrendercall %}
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+{% rendercall helpers.container('mb-10') %}
+  <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:blockquote.html" as quote %}
+    
+      {% rendercall quote.render(storyData) %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+      {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | jsonPretty }}{% enddscode %}
+  </div>
+
+  <h4 class="mt-10 mb-5">No image</h4>
+  {% rendercall quote.render(storyData | merge({ _image: null })) %}
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+  {% endrendercall %}
+  <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:blockquote.html" as quote %}
+    
+      {% rendercall quote.render(storyData) %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+      {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | merge({ _image: null }) | jsonPretty }}{% enddscode %}
+  </div>
+
+{% endrendercall %}
+{% endblock %}

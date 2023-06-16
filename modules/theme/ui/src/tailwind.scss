@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Typography */
+@layer base {
+  html {
+    @apply font-sans 
+    text-base 
+    font-normal 
+    text-gray-700;
+  }
+
+  h1 {
+    @apply text-6xl
+    font-extrabold;
+  }
+
+  h2 {
+    @apply text-5xl
+    font-extrabold;
+  }
+
+  h3 {
+    @apply text-4xl
+    font-extrabold;
+  }
+
+  h4 {
+    @apply text-3xl
+    font-bold;
+  }
+
+  h5 {
+    @apply text-2xl
+    font-bold;
+  }
+
+  h6 {
+    @apply text-xl
+    font-bold;
+  }
+
+  // Page layout
+  .app {
+    @apply min-h-screen;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow-x: hidden;
+  }
+
+
+  // Apos/Tiptap specific
+
+  .t-richtext li > p {
+    @apply m-0;
+  }
+
+  .app-pager {
+    $this: &;
+    @apply mt-4 md:mt-8 border-b border-gray text-lg text-center;
+
+    &__item,
+    &__item > a {
+      display: inline-block;
+    }
+
+    &__item > a {
+      @apply p-4;
+    }
+
+    &__item.is-active {
+      @apply p-4 border-b-[3px] border-brand;
+    }
+  }
+}
+
+@layer components {
+  .t-display {
+    @apply text-7xl
+    font-extrabold leading-tight;
+  }
+
+  .t-subtitle {
+    @apply text-xl
+    font-light;
+  }
+
+  .t-caption {
+    @apply text-sm 
+    font-semibold 
+    uppercase 
+    tracking-wider;
+  }
+
+  .t-link {
+    @apply font-bold underline
+    text-brand
+    transition-all ease-in-out delay-150
+    hover:text-brand-700
+    active:text-brand-700
+    visited:text-brand-700
+    cursor-pointer;
+  }
+
+  .t-richtext {
+    @apply prose prose-p:text-base max-w-2xl;
+  }
+
+  .break-anywhere {
+    overflow-wrap: anywhere;
+  }
+}

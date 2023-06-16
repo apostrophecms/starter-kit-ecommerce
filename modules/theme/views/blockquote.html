@@ -1,0 +1,40 @@
+{% import 'theme:icon.html' as icons %}
+{% fragment render(item) %}
+  {%- set attachment = apos.image.first(item.image or item._image or {}) -%}
+  <div class="relative isolate md:flex md:items-center md:gap-16 p-8 lg:p-16 border rounded-md border-brand-300 bg-brand-50">
+    {%- if attachment | length -%}
+      {# Should become aspect ratio (aspect-1) when Safari 14 is gone #}
+      <div class="mx-auto w-52 h-52 xs:w-80 xs:h-80">
+        <img
+          src="{{ apos.attachment.url(attachment, { size: 'full' }) }}" 
+          alt="{{ attachment._alt }}" 
+          width="{{ apos.attachment.getWidth(attachment) }}" 
+          height="{{ apos.attachment.getHeight(attachment) }}" 
+          srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}" 
+          {% if apos.attachment.hasFocalPoint(attachment) %} 
+          style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }};"
+          {% endif %} 
+          sizes="400px"
+          class="w-full h-full rounded-full object-cover"
+        >
+      </div>
+    {%- endif -%}
+    <div class="flex-1 mt-6 md:mt-0">
+      {# Rich text #}
+      <div class="prose prose-p:text-base md:prose-p:text-lg max-w-3xl">{{ rendercaller() }}</div>
+      {# Title, subtitle, quote #}
+      <div class="pt-8">
+        <span class="block text-sm md:text-base font-bold text-brand-700">{{ item.title }}</span>
+        {% if item.subtitle %}
+          <span class="block text-xs md:body-sm text-gray-700">{{ item.subtitle }} </span>
+        {% endif %}
+      </div>
+    </div>
+    {# <div class="opacity-50"> #}
+    {{ icons.svg(
+      'quote', 'w-24 h-24 lg:w-44 lg:h-44', 
+      cls='absolute bottom-8 lg:bottom-16 right-8 lg:right-16 -z-[1] opacity-50 text-brand-200'
+    ) }}
+    {# </div> #}
+  </div>
+{% endfragment %}

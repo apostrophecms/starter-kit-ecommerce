@@ -1,0 +1,94 @@
+{% import "theme:logo.html" as logo %}
+{% import "theme:button.html" as buttons %}
+{% import "theme:helpers.html" as helpers %}
+
+{# For the schema of the `config` parameter see footer.json #}
+{% fragment render(config, homeUrl = '/', currentUrl = '') %}
+  {%- set headerCtaIcon = apos.theme.navItems([config.headerCtaIcon]) | first -%}
+  {%- set headerCtaIconUrl = headerCtaIcon.url -%}
+  {%- set headerCtaButton = apos.theme.navItems([config.headerCtaButton]) | first -%}
+  {%- set headerCtaButtonUrl = headerCtaButton.url -%}
+  {%- set searchUrl = (apos.theme.navItems([config.searchUrl]) | first).url -%}
+  {%- set mainNav = apos.theme.navItems(config.headerNav, currentUrl) -%}
+  {%- set logoAttachment = apos.image.first(config.logo or {}) -%}
+  {%- rendercall helpers.container() -%}
+    <header class="relative lg:overflow-hidden flex h-16 md:h-[100px] items-center justify-between border-b border-gray">
+      {# Responsive logo #}
+      <a class="block max-w-[140px] md:max-w-[180px]" href="{{ homeUrl }}">{{ logo.render(logoAttachment, alt = __t('app:brandHome', { value: config.brandName })) }}</a>
+
+      {# Main desktop navigation #}
+      {%- render _mainNav(mainNav, cls = 'hidden lg:block lg:mx-4') -%}
+
+      {# Header actions #}
+      <div class="flex gap-1 md:gap-7">
+        {%- if searchUrl -%}
+          {{ buttons.icon(
+            'magnifying-glass', 
+            label = __t('app:search'),
+            href = searchUrl,
+            { cls: 'text-gray-600' }
+          ) }}
+        {%- endif -%}
+        {%- if headerCtaIconUrl -%}
+          {{ buttons.icon(
+            headerCtaIcon.icon, 
+            label = headerCtaIcon.label, 
+            href = headerCtaIconUrl,
+            { cls: 'text-gray-600' }
+          ) }}
+        {%- endif -%}
+        {%- if headerCtaButtonUrl -%}
+          {{ buttons.primary(
+            headerCtaButton.label, 
+            href = headerCtaButtonUrl,
+            { cls: 'hidden lg:inline-block ml-2' }
+          ) }}
+        {%- endif -%}
+        {{ buttons.icon('bars-3', { 
+          cls: ' lg:hidden text-gray-600',
+          data: {
+            target: '#main-menu-mobile-popup'
+          },
+          aria: { 
+            label: __t('app:mainMenu'), 
+            expanded: 'false', 
+            controls: 'main-menu-mobile' 
+          },
+          attr: { 
+            onclick: 'apos.modules.theme.mobileNavToggle(this)'
+          }
+        }) }}
+      </div>
+
+      {# Mobile navigation popup #}
+      <div id="main-menu-mobile-popup" class="lg:hidden mt-2 px-8 py-4 max-w-full absolute top-full right-0 z-10 translate-y-4 opacity-0 pointer-events-none transition-[transform,opacity] ease-in motion-reduce:transition-none rounded-md bg-gray-100">
+        {% render _mainNav(mainNav, id = 'main-menu-mobile', hidden = "true") %}
+        {%- if headerCtaButtonUrl -%}
+          <div class="flex items-center justify-center pt-8 pb-4 mt-4 border-t border-brand">
+          {{ buttons.primary(
+            headerCtaButton.label, 
+            href = headerCtaButtonUrl
+          ) }}
+          </div>
+        {%- endif -%}
+      </div>
+    </header>
+  {% endrendercall %}
+{% endfragment %}
+
+{% fragment _mainNav(navData, id = 'main-menu', hidden = '', cls = '') %}
+  <nav 
+    id="{{ id }}" 
+    class="flex items-center justify-center flex-grow h-full{{ (' ' + cls) if cls }}" 
+    aria-label="{{ __t('app:mainMenu') }}"
+    {% if hidden %}aria-hidden="{{ hidden }}"{% endif %}>
+    <ul class="h-full flex flex-col gap-4 lg:gap-0 lg:flex-row items-center justify-center">
+      {%- for nav in navData -%}
+        {%- set state = '' if nav.active else ' after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:ease-in after:duration-100' -%}
+          <li class="h-full">
+            <a class="relative inline-flex items-center justify-center px-5 py-4 lg:py-0 h-full font-semibold text-gray-600 after:block after:absolute after:bottom-[-1px] after:left-0 after:h-1 after:w-full after:bg-brand-300{{ state }}" href="{{ nav.url }}">{{ nav.label }}</a>
+          </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+{% endfragment %}

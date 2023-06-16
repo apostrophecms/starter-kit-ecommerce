@@ -1,0 +1,44 @@
+{
+  "headerNav": [
+    {
+      "label": "Home",
+      "urlType": "custom",
+      "url": "#home"
+    },
+    {
+      "label": "Men",
+      "urlType": "page",
+      "_page": [
+        {
+          "_url": "#men"
+        }
+      ],
+      "includeActive": "organisms-header"
+    },
+    {
+      "label": "Women",
+      "urlType": "custom",
+      "url": "#women"
+    },
+    {
+      "label": "Accessories",
+      "urlType": "custom",
+      "url": "#accessories"
+    }
+  ],
+  "headerCtaIcon": {
+    "label": "Custom Icon CTA",
+    "urlType": "custom",
+    "url": "#custom-icon-cta",
+    "icon": "user-circle"
+  },
+  "headerCtaButton": {
+    "label": "Custom CTA",
+    "urlType": "custom",
+    "url": "#custom-cta"
+  },
+  "searchUrl": {
+    "urlType": "custom",
+    "url": "#search"
+  }
+}

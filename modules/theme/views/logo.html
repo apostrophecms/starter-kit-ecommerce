@@ -1,0 +1,20 @@
+{#
+  Render the logo component. The attachment will be used if present,
+  otherwise the default "demo" logo will be used. The cls argument is an optional
+  CSS classes variable.
+  
+  The alt argument is recommended (a11y), but optional. If not provided,
+  the attachment's _alt property will be used.
+#}
+{% macro render(attachment, alt = '', cls = '') %}
+  {%- set width = 189 -%}
+  {%- set height = 40 -%}
+  {%- set url = apos.asset.url('/modules/theme/logo.svg') -%}
+  {%- if attachment -%}
+    {%- set width = apos.attachment.getWidth(attachment) -%}
+    {%- set height = apos.attachment.getHeight(attachment) -%}
+    {%- set url = apos.attachment.url(attachment, { size: 'one-third' }) -%}
+  {%- endif -%}
+  {# {%- endif -%} #}
+  <img class="h-full w-full object-contain {{ cls }}" width="{{ width }}" height="{{ height }}" src="{{ url | e }}" alt="{{ alt or attachment._alt }}">
+{% endmacro %}

@@ -1,0 +1,17 @@
+{# 
+  Print attributes string from attrs object.
+  Examples: 
+  attrs({ one: "1", two: true, three: false }) -> one="1" two
+  attrs({ one: "1", two: true, three: false }, 'data-') -> data-one="1" data-three
+#}
+{% macro attrs(attrs, prefix) %}
+  {%- for key, value in attrs -%}
+    {%- if apos.theme.typeOf(value) == 'boolean' -%}
+      {%- if value -%}
+        {{ " " }}{{ prefix }}{{ key }}
+      {%- endif -%}
+    {%- else -%}
+      {{ " " }}{{ prefix }}{{ key }}="{{ value }}"
+    {%- endif -%}
+  {%- endfor -%}
+{% endmacro %}

@@ -1,0 +1,31 @@
+{%- import 'theme:button.html' as buttons -%}
+{%- import 'theme:card.html' as card -%}
+{%- import 'theme:heading.html' as heading -%}
+
+{%- if data.widget._categories | length -%}
+  <section class="py-8 md:py-16">
+    {%- if data.widget.title -%}
+      <div class="mb-12">
+        {% render heading.render(
+          data.widget.title, 
+          data.widget.tagline, 
+          section = true
+        ) %}
+      </div>
+    {%- endif -%}
+    {%- render card.categoryList(data.widget._categories) -%}
+    {%- set cta = apos.theme.navItems([data.widget.viewMore]) | first -%}
+    {%- if cta.label and cta.url -%}
+      <div class="mt-12 text-center">
+        {%- if cta.isPrimary -%}
+          {{ buttons.primary(cta.label, href = cta.url, { large: true }) }}
+        {%- else -%}
+          {{ buttons.outlined(cta.label, href = cta.url, { large: true }) }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </section>
+{%- elif data.widget._edit -%}
+  {# Editor only message #}
+  <p>{{ __t('app:noResults') }}</p>
+{%- endif -%}

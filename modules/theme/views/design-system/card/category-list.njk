@@ -1,0 +1,42 @@
+{% extends dsPreview %}
+{% import "theme:card.html" as cards %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set item = apos.dsp.configData('molecules-card').category %}
+{%- set item2 = item | merge ({title: 'Category2 Card Title'}) -%}
+{%- set item3 = item | merge ({title: 'Category3 Card Title', productsAvailable:''}) -%}
+{%- set item4 = item | merge ({title: 'Category4 Card Title', productsAvailable:null}) -%}
+{%- set item5 = item | merge ({title: 'Category5 Card Title'}) -%}
+{%- set item6 = item | merge ({title: 'Category6 Card Title'}) -%}
+{%- set item7 = item | merge ({title: 'Category7 Card Title'}) -%}
+{%- set items = [item, item2, item3, item4, item5, item6, item7]-%}
+
+{% block tagline %}
+  List of Category cards
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+    {% render cards.categoryList(items) %}
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+{# container #}
+{% rendercall helpers.container() %}
+
+  {# Code grid - 2 cols #}
+  <div class="grid grid-cols-2">
+  {% dscode 'njk' %}
+    {% import "theme:card.html" as cards %}
+    {% render cards.categoryList(items) %}
+  {% enddscode %}
+
+  {% dscode 'json', label = 'Data', parse = true %}{{ items | jsonPretty }}{% enddscode %}
+  </div>
+
+  {# ensure the story finishes with a nice spacing #}
+  <div class="my-10" />
+  
+{% endrendercall %}
+{% endblock %}

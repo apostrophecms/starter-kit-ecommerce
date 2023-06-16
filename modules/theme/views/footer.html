@@ -1,0 +1,56 @@
+{% import "theme:logo.html" as logo %}
+{% import "theme:icon.html" as icons %}
+{% import "theme:helpers.html" as helpers %}
+
+{# For the schema of the `config` parameter see footer.json #}
+{% fragment render(config, homeURL = '/') %}
+  {%- set logoAttachment = apos.image.first(config.logo or {}) -%}
+  <div class="bg-gray-50">
+  {% rendercall helpers.container() %}
+    <footer class="py-8 lg:pt-16 lg:pb-8">
+        <div class="border-b border-gray flex flex-col gap-y-3 justify-center items-center pb-5 lg:flex-row lg:justify-between">
+          {# Logo and home link #}
+          <a class="block max-w-[140px]" href="{{ homeURL }}">{{ logo.render(logoAttachment, alt = __t('app:brandHome', { value: config.brandName })) }}</a>
+          
+          {# Navigation menu #}
+          <nav class="flex items-center pt-3 lg:pt-0" aria-label="{{ __t('app:footerMenu') }}">
+            {{ _nav(config.footerNav) }}
+          </nav>
+          
+          {# Social icons, if any #}
+          <div class="flex items-center gap-1.5">
+            {{ _social(config.footerSocial) }}
+          </div>
+        </div>
+
+        {# Copyright info #}
+        <p class="text-center pt-8 text-sm text-gray-500">
+          &copy; {{ __t('app:copyright') }}&nbsp; 
+          <strong>{{ config.brandName }}</strong>
+        </p>
+
+    </footer>
+  {% endrendercall %}
+  </div>
+{% endfragment %}
+
+{% macro _nav(links) %}
+  <ul class="flex justify-center flex-wrap">
+  {%- for item in apos.theme.navItems(links) -%}
+    <li>
+    <a href="{{ item.url }}" class="block mx-1 px-2 py-3 text-base font-semibold text-gray-600 hover:text-gray-900 active:text-gray-900 transition-color duration-150">
+      {{ item.label }}
+      </a>
+  </li>
+  {%- endfor -%}
+</ul>
+{% endmacro %}
+
+{% macro _social(links) %}
+  {%- for item in links %}
+    <a href="{{ item.url }}" class="p-3 text-gray-400 hover:text-brand active:text-brand transition-color duration-150">
+      <span class="sr-only">{{ item.label }}</span>
+      {{ icons.svg(item.icon) }}
+    </a>
+  {%- endfor -%}
+{% endmacro %}

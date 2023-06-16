@@ -1,0 +1,6 @@
+{% import 'theme:hero-widget.html' as hero %}
+<section class="py-8 md:py-16">
+{% rendercall hero.split(data.widget) %}
+  {% area data.widget, 'content' %}
+{% endrendercall %}
+</section>

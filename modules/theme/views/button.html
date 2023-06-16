@@ -1,0 +1,119 @@
+{% import "theme:utils.html" as u %}
+{% import "theme:icon.html" as icons %}
+
+{# renders primary button
+  label: (string)
+  href: (string) URL if this is a call to action (will render <a> tag)
+  options: 
+    cls: additional CSS classes
+    full: (boolean) full width (restricted by the outer layout), default false
+    large: (boolean) if true will render large button (different fotn-size, paddings, etc.), default false
+    data: (object) will be transformed to `data-{key}="{value}"` or `data-{key}` only when value is `true`
+    aria: (object) will be transformed to `aria-{key}="{value}"` or `aria-{key}` only when value is `true`
+    attr: (object) will be transforemd to `{key}`="{value}" or `{key}` only when value is `true`
+#}
+{% macro primary(label, options, href = false) %}
+  {{ _render(label, options | merge({ onDark: false }), 'primary', href = href) }}
+{% endmacro %}
+
+{# renders outlined button
+  label: (string) 
+  href: (string) URL if this is a call to action (will render <a> tag)
+  options: 
+    cls: additional CSS classes
+    full: (boolean) full width (restricted by the outer layout), default false
+    large: (boolean) if true will render large button (different fotn-size, paddings, etc.), default false
+    onDark: (boolean) if true will render onDark style for the outlined button (different colors, etc.), default false
+    mobileInverse: (boolean) if true will inverse the onDark style for the outlined button (different colors, etc.) on mobile devices, default false
+    data: (object) will be transformed to `data-{key}="{value}"` or `data-{key}` only when value is `true`
+    aria: (object) will be transformed to `aria-{key}="{value}"` or `aria-{key}` only when value is `true`
+    attr: (object) will be transforemd to `{key}`="{value}" or `{key}` only when value is `true`
+#}
+{% macro outlined(label, options, href = false) %}
+  {{ _render(label, options, 'outlined', href = href) }}
+{% endmacro %}
+
+{# renders an icon button
+  label: (string) important for ally (accessibility)
+  icon: (string) the name of the icon to be used without the "theme-svg-icon-" prefix, e.g. 'heart'
+  size: (string) different sizes, stated in theme:icon.html (sm (16px) | md (24px, default) | l (32px) | xl (40px) or any tailwind size class e.g. "w-[20px] h-[20px]". Default is md or 24px
+  href: (string) URL if this is a call to action (will render <a> tag)
+  options: 
+    cls: additional CSS classes
+    onDark: (boolean) if true will render onDark style for the icon button (different colors, etc.), default false
+    data: (object) will be transformed to `data-{key}="{value}"` or `data-{key}` only when value is `true`
+    aria: (object) will be transformed to `aria-{key}="{value}"` or `aria-{key}` only when value is `true`
+    attr: (object) will be transforemd to `{key}`="{value}" or `{key}` only when value is `true`
+#}
+{% macro icon(icon, options, label = '', size = 'md', href = false) %}
+  {%- set tag = 'a' if href else 'button' -%}
+  {%- set state = ' text-brand 
+        hover:text-brand-700
+        active:text-brand-700
+        disabled:text-gray-400
+        transition-color
+        duration-150' -%}
+  {%- if options.onDark -%}
+    {%- set state = ' text-white 
+        hover:text-brand-100
+        active:text-brand-100
+        disabled:text-gray-400
+        transition-color
+        duration-150' -%}
+  {%- endif -%}
+  <{{ tag }} 
+      {% if href %}href="{{ href }}"{% endif %}
+      title="{{ label }}"
+      class="inline-block p-2 text-center rounded-md
+      {{ state }}{{ (' ' + options.cls) if options.cls }}"
+      {{ u.attrs(options.attr, '') }}{{ u.attrs(options.data, 'data-') }}{{ u.attrs(options.aria, 'aria-') }}
+      {{ ' disabled' if options.disabled }} 
+    >
+    <span class="sr-only">{{ label }}</span>
+    {{ icons.svg(icon, size) }}
+  </{{ tag }}>
+{% endmacro %}
+
+{# _render macro for internal use inside button (primary and outlined) macro #}
+{% macro _render(label, options, type, href = false) %}
+  {%- set tag = 'a' if href else 'button' -%}
+  {%- set state = ' text-white border border-brand bg-brand
+      hover:bg-brand-700 hover:border-brand-700
+      active:bg-brand-700 active:border-brand-700 
+      disabled:bg-brand-100
+      disabled:text-gray-400 disabled:border-brand-100
+      transition-color duration-150' -%}
+  {%- if type === 'outlined' -%}
+    {%- set state = ' bg-transparent border hover:outline hover:outline-2 active:outline active:outline-2 disabled:text-gray-400 disabled:border disabled:border-gray-200 disabled:outline-none disabled:ring-0' -%}
+    {# colors only #}
+    {%- if options.mobileInverse -%}
+      {%- set state = state + ' text-white border-gray-50 hover:outline-gray-50 active:outline-gray-50 lg:text-gray-800 lg:border-gray-500 lg:hover:outline-gray-500 lg:active:outline-gray-500' -%}
+    {%- else -%}
+      {%- set state = state + ' text-gray-800 border-gray-500 hover:outline-gray-500 active:outline-gray-500' -%}
+    {%- endif -%}
+
+    {%- if options.onDark -%}
+      {%- set state = ' bg-transparent border hover:outline hover:outline-2 active:outline active:outline-2 disabled:text-gray-400 disabled:border disabled:border-gray-200 disabled:outline-none disabled:ring-0' -%} 
+      {# colors only #}
+      {%- if options.mobileInverse -%}
+        {%- set state = state + ' text-gray-800 border-gray-500 hover:outline-gray-500 active:outline-gray-500 lg:text-white lg:border-gray-50 lg:hover:outline-gray-50 lg:active:outline-gray-50' -%}
+      {%- else -%}
+        {%- set state = state + ' text-white border-gray-50 hover:outline-gray-50 active:outline-gray-50' -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- set full = ' w-full' if options.full else '' -%}
+  {%- set large = ' text-2xl px-6 py-4' if options.large else ' text-base px-4 py-2' -%}
+
+  <{{ tag }} 
+    {% if href %}href="{{ href }}"{% endif %}
+    class="inline-block text-center rounded-md leading-6 
+    {{ state }}{{large}}{{ full }}{{ (' ' + options.cls) if options.cls }}"
+    {{ u.attrs(options.attr, '') }}{{ u.attrs(options.data, 'data-') }}{{ u.attrs(options.aria, 'aria-') }}
+    {{ ' disabled' if options.disabled }} 
+  >
+    <span class="whitespace-nowrap max-w-[60ch] overflow-hidden font-medium">
+      {{ label }}
+    </span>
+  </{{ tag }}>
+{% endmacro %}

@@ -1,0 +1,64 @@
+{% extends dsPreview %}
+{% import "theme:card.html" as cards %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set storyDataP = apos.dsp.configData('molecules-card').product %}
+
+{% block tagline %}
+  Product Card
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+    {% render cards.product(storyDataP) %}
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+{% rendercall helpers.container() %}
+
+    {# Code grid - 2 cols #}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:card.html" as cards %}
+      {# Default product card with all data #}
+      {% render cards.product(storyDataP) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyDataP | jsonPretty }}{% enddscode %}
+    </div>
+
+  <h4 class="mt-10">Product card with all data, except buyNowUrl</h4>
+	  <p class="mt-5 mb-4">The button "Buy Now" will not be displayed, if there is no <code>buyNowUrl</code>, e.g. <code>buyNowUrl</code> is empty string or null </p>
+    {% render cards.product(storyDataP | merge ({buyNowUrl: null})) %}
+
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:card.html" as cards %}
+      {# Product card with all data, except buyNowUrl #}
+      {% render cards.product(storyDataP | merge ({buyNowUrl: null})) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyDataP | jsonPretty }}{% enddscode %}
+    </div>
+
+
+    <h4 class="mt-10">Product card with all data, except pricePromo</h4>
+	  <p class="mt-5 mb-4">The promotional price will not be displayed, if there is no <code>pricePromo</code>. Instead - the regular price will be displayed and styled accordingly.</p>
+    {% render cards.product(storyDataP | merge ({pricePromo: null})) %}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:card.html" as cards %}
+      {# Default product card with all data, except promoPrice #}
+      {% render cards.product(storyDataP | merge ({pricePromo: null})) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyDataP | jsonPretty }}{% enddscode %}
+    </div>
+
+  {# ensure the story finishes with a nice spacing #}
+  <div class="my-10" />
+
+{% endrendercall %}
+{% endblock %}

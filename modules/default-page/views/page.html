@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% import 'theme:helpers.html' as helpers %}
+{% import "theme:heading.html" as heading %}
+
+{% block main %}
+  {% rendercall helpers.container() %}
+    {% if data.page.headerType === 'widget' %}
+      {% area data.page, 'heading' %}
+    {% else %}
+      {% render heading.render(data.page.title, data.page.tagline) %}
+    {% endif %}
+    {% area data.page, 'main' %}
+  {% endrendercall %}
+{% endblock %}

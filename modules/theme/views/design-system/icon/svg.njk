@@ -1,0 +1,61 @@
+{% extends dsPreview %}
+{% import "theme:icon.html" as icon %}
+
+{% block tagline %}
+  SVG icon sprite 
+{% endblock %}
+
+{% block previewSimple %}
+<div class="flex gap-1 items-center justify-center flex-wrap">
+  {{ icon.svg('heart', 'sm') }}
+  {{ icon.svg('heart', 'md') }}
+  {{ icon.svg('heart', 'l', cls='text-brand') }}
+  {{ icon.svg('heart', 'xl') }}
+  {{ icon.svg('heart', 'h-[52px] w-[52px]') }}
+</div>
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+  <div class="mx-auto mb-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+    {# Section code example #}
+    {% dscode 'njk' %}
+      {% import "theme:icon.html" as icon %}
+
+      {# default size, equals to 'md' #}
+      {{ icon.svg('heart') }}
+      {# add custom class #}
+      {{ icon.svg('heart', cls = "text-brand") }}
+      {# predefined sizes #}
+      {{ icon.svg('heart', 'sm') }}
+      {{ icon.svg('heart', 'md') }}
+      {{ icon.svg('heart', 'l') }}
+      {{ icon.svg('heart', 'xl') }}
+      {# custom size #}
+      {{ icon.svg('heart', 'h-[96px] w-[96px]') }}
+    {% enddscode %}
+
+    {# Another section - auto list all icons #}
+    <h4 class="mt-10">All Icons</h4>
+    <div class="flex flex-row gap-5 flex-wrap px-4 py-8">
+      {% set icons = apos.theme.icons() %}
+      {% for iconV in icons %}
+      <div class="flex flex-col gap-3 items-center justify-start w-[130px]">
+        {{ icon.svg(iconV.value, 'xl') }}
+        {# A quick JS to select all on single click #}
+        <span class="text-center" onClick="getSelection().selectAllChildren(this)">{{ iconV.value }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {# On dark #}
+    <div class="bg-gray-950 flex flex-row gap-5 flex-wrap px-4 py-8 my-6">
+      {% set icons = apos.theme.icons() %}
+      {% for iconV in icons %}
+      <div class="flex flex-col gap-3 items-center justify-start w-[130px] text-white">
+        {{ icon.svg(iconV.value, 'xl') }}
+        <span class="text-center" onClick="getSelection().selectAllChildren(this)">{{ iconV.value }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

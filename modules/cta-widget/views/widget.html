@@ -1,0 +1,12 @@
+{%- import 'theme:cta-widget.html' as cta -%}
+<section class="py-8 md:py-16">
+{%- if data.widget.renderType === 'image' -%}
+  {%- rendercall cta.image(data.widget) -%}
+    {%- area data.widget, 'content' -%}
+  {%- endrendercall -%}
+{%- else -%}
+  {%- rendercall cta.solid(data.widget) -%}
+    {%- area data.widget, 'content' -%}
+  {%- endrendercall -%}
+{%- endif -%}
+</section>

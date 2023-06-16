@@ -1,0 +1,27 @@
+{% extends "@corllete/apos-ds-page-type:layout/previewBase.html" %}
+{# Extend point for applications #}
+{# 
+  Allows fine tuning of the design system Story Preview. 
+  Fonts, CSS and JS can be added to the preview. Additional 
+  template includes (e.g. sprites) can be added in the afterAposScripts block.
+#}
+
+{# Before any css - safe to completely overwrite it #}
+{% block previewFonts %}
+  {# Required for the preview icon actions #}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{# Add any head (css) after the preview styles were included #}
+{% block previewCss %}
+  {# Add any custom CSS to modify the DS preview #}
+{% endblock %}
+
+{# Add any custom js after the preview js source #}
+{% block previewJs %}{% endblock %}
+
+{# Should be the same as your application layout #}
+{% block afterAposScripts %}
+  {{ super() }}
+  {% include "theme:icons.svg.html" %}
+{% endblock %}

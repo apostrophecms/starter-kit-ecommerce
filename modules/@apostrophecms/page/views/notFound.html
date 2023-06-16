@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% import 'theme:helpers.html' as helpers %}
+{% import "theme:heading.html" as heading %}
+
+{% block title %}{{ __t('app:notFoundTitle') }}{% endblock %}
+
+{% block main %}
+  {% rendercall helpers.container('mb-8 md:mb-16') %}
+    {% render heading.render(
+      __t('app:notFoundTitle'),
+      __t('app:notFoundDesc')
+    ) %}
+  {% endrendercall %}
+{% endblock %}

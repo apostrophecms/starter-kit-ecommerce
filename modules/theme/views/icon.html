@@ -1,0 +1,42 @@
+{#
+ # In order to control the color, set the "color" CSS property on the parent element.
+ #
+ # Arguments:
+ # - name: the name without the "theme-svg-icon-" prefix, e.g. 'heart'
+ # - size: (string) sm (16px) | md (24px, default) | l (32px) | xl (40px) 
+ #     or any tailwind size class e.g. "w-[20px] h-[20px]"
+ # - cls: (string) additional CSS class names to be added to the svg tag
+#}
+{% macro svg(name, size, cls = '') -%}
+  {%- if size == 'sm' -%}
+    {# 16px #}
+    {% set sizeCls = "w-4 h-4" %}
+  {%- elif size == 'md' -%}
+    {# 24px #}
+    {% set sizeCls = "w-6 h-6" %}
+  {%- elif size == 'l' -%}
+    {# 32px #}
+    {% set sizeCls = "w-8 h-8" %}
+  {%- elif size == 'xl' -%}
+    {# 40px #}
+    {% set sizeCls = "w-10 h-10" %}
+  {%- elif not size -%}
+    {# default #}
+    {% set sizeCls = "w-6 h-6" %}
+  {%- else -%}
+    {# custom size, e.g. "w-[20px] h-[20px]"
+           WARNING: we don't build it dynamically
+           so that tailwind can find it when treeshaking from the caller code #}
+    {% set sizeCls = size %}
+  {%- endif -%}
+
+  {%- set name = 'theme-svg-icon-' + name -%}
+  {%- set _cls = '' -%}
+  {%- if cls -%}
+    {%- set _cls = ' ' + cls -%}
+  {%- endif -%}
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="{{ sizeCls }}{{ _cls }}" aria-hidden="true">
+    <use xlink:href="#{{ name }}"></use>
+  </svg>
+{%- endmacro %}

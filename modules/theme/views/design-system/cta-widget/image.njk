@@ -1,0 +1,42 @@
+{% extends dsPreview %}
+{% import "theme:cta-widget.html" as cta %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set storyData = apos.dsp.configData('molecules-cta-widget').image %}
+
+{% block tagline %}
+  cta Image
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+
+  {% rendercall cta.image(storyData) %}
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+  {% endrendercall %}
+  
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+{% rendercall helpers.container() %}
+
+    {# Code grid - 2 cols #}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:cta-widget.html" as cta %}
+      {# image cta-widget #}
+      {% rendercall cta.image(storyData) %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+    {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | jsonPretty }}{% enddscode %}
+    </div>
+
+  {# ensure the story finishes with a nice spacing #}
+  <div class="my-10" />
+
+{% endrendercall %}
+{% endblock %}

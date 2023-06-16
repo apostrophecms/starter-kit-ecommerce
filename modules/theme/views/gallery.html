@@ -1,0 +1,67 @@
+
+{% fragment image(images) %}
+  {%- if images | length %}
+    {%- set attachments = apos.image.all(images) -%}
+    {%- set first = attachments | first -%}
+    <div 
+      class="relative grid grid-cols-1 gap-y-4 sm:gap-y-8" 
+      data-app-gallery
+    >
+      {# The player #}
+      <img
+        data-player
+        class="w-full h-full max-h-[70vh] object-contain rounded-md" 
+        src="{{ apos.attachment.url(first, { size: 'two-thirds' }) }}" 
+        alt="{{ first._alt }}" 
+        width="{{ apos.attachment.getWidth(first) }}" 
+        height="{{ apos.attachment.getHeight(first) }}" 
+        srcset="{{ attachment.srcset or apos.image.srcset(first) }}" 
+        {% if apos.attachment.hasFocalPoint(first) %} 
+        style="object-position: {{ apos.attachment.focalPointToObjectPosition(first) }};"
+        {% endif %} 
+        sizes="(max-width: 600px) 569px, 800px">{# /player #}
+
+      {# The playlist #}
+      {%- set hidden = '' if attachments | length > 1 else ' hidden' -%}
+      <ul
+        data-playlist
+        role="list" 
+        class="grid grid-cols-3 gap-4 sm:gap-8{{ hidden }}"
+      >
+        {%- for attachment in attachments-%}
+          <li data-playlist-item class="relative group/state{{ ' is-active' if loop.index === 1 }}">
+            <div 
+              class="group aspect-w-10 aspect-h-7 block w-full overflow-hidden 
+              rounded-md bg-white 
+              focus-within:ring-2 focus-within:ring-brand
+              focus-within:ring-offset-2 focus-within:ring-offset-white
+              group-[.is-active]/state:ring-2 group-[.is-active]/state:ring-brand 
+              group-[.is-active]/state:ring-offset-2 group-[.is-active]/state:ring-offset-white"
+            >
+              <img
+                data-thumbnail
+                class="pointer-events-none w-full h-full object-cover rounded-md" 
+                src="{{ apos.attachment.url(attachment, { size: 'two-thirds' }) }}" 
+                alt="{{ attachment._alt }}" 
+                width="{{ apos.attachment.getWidth(attachment) }}" 
+                height="{{ apos.attachment.getHeight(attachment) }}" 
+                srcset="{{ attachment.srcset or apos.image.srcset(attachment) }}" 
+                {% if apos.attachment.hasFocalPoint(attachment) %} 
+                style="object-position: {{ apos.attachment.focalPointToObjectPosition(attachment) }};"
+                {% endif %} 
+                sizes="(max-width: 600px) 569px, 800px">
+              <button 
+                data-trigger
+                data-url="{{ attachment.url }}"
+                type="button" 
+                class="peer absolute inset-0 focus:outline-none"
+              >
+                <span class="sr-only">{{ __t('app:enlarge', { value: attachment.title }) }}</span>
+              </button>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>{# /playlist #}
+    </div>
+  {%- endif -%}
+{% endfragment %}

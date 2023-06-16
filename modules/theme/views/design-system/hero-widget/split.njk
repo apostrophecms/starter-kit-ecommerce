@@ -1,0 +1,62 @@
+{% extends dsPreview %}
+{% import "theme:hero-widget.html" as hero %}
+{% import "theme:helpers.html" as helpers %}
+
+{% set storyData = apos.dsp.configData('molecules-hero-widget').split %}
+
+{% block tagline %}
+  Hero Split
+{% endblock %}
+
+{% block preview %}
+{% rendercall helpers.container() %}
+
+  {% rendercall hero.split(storyData) %}
+    <h1>some text here</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+  {% endrendercall %}
+  
+{% endrendercall %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+{% rendercall helpers.container() %}
+
+    {# Code grid - 2 cols #}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:hero-widget.html" as hero %}
+      {# Default category card with all data #}
+      {% render hero.split(storyData) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | jsonPretty }}{% enddscode %}
+    </div>
+
+  <h4 class="mt-10">Hero Widget with image on the right</h4>
+    <p class="mt-5 mb-4">The image position will be on the right, if <code>imagePosition: 'right'</code>.</p>
+    {% rendercall hero.split(storyData | merge ({ imagePosition: 'right' })) %}
+      <h1>Hero Split Widget</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.
+      </p>
+    {% endrendercall %}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:hero-widget.html" as hero %}
+    {# Hero Widget with image on the right, with even ratio "image-content" #}
+    {% rendercall hero.split(storyData | merge ({ imagePosition: 'right' }), { even: true }) %}
+      <h1>HERO SPLIT</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.
+      </p>
+    {% endrendercall %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ storyData | jsonPretty }}{% enddscode %}
+    </div>
+
+  {# ensure the story finishes with a nice spacing #}
+  <div class="my-10" />
+
+{% endrendercall %}
+{% endblock %}

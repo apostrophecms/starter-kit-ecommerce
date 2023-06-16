@@ -1,0 +1,17 @@
+{# 
+  Render Page heading.
+  If `section` is true, render a h2 tag. If it's false (default)
+  render a h1 tag with appropriate for a page header margin.
+#}
+{% fragment render(title, tagline, section = false) %}
+{%- set vspaceTop = ' mt-16' if not section else '' -%}
+{%- set tagName = 'h1' if not section else 'h2' -%}
+{%- set defCls = ' text-5xl md:text-6xl' if not section else ' text-4xl md:text-5xl' -%}
+<div class="text-center{{ vspaceTop }}">
+  <{{tagName}} class="mb-6 md:max-w-3xl mx-auto font-extrabold text-gray-800{{ defCls }}">{{ title }}</{{tagName}}>
+  <hr class="mx-auto h-[3px] w-52 bg-brand">
+  {%- if tagline -%}
+    <p class="t-subtitle md:max-w-3xl mt-6 mx-auto text-center text-gray-600">{{ tagline }}</p>
+  {%- endif -%}
+</div>
+{% endfragment %}

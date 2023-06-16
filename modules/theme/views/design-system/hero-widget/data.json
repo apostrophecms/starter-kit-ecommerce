@@ -1,0 +1,114 @@
+{
+  "full": {
+    "caption": "Hero Widget-Full Caption",
+    "ctaPrimary": 
+    {
+      "label": "Shop Now",
+      "urlType": "custom",
+      "url": "#urlCtaPrimary"
+    }
+  ,
+  "ctaOutlined": {
+      "label": "Explore",
+      "urlType": "page",
+      "_page": [
+      {
+        "_url": "#_page_urlCtaOutlined"
+      }
+    ]
+  },
+    "dark": true,
+    "_image": [
+      {
+        "_id": "clgyx91c9000s3eh9b9ji3dto:en:draft",
+        "attachment": {
+          "_id": "clgyx90ed000p3eh97uy897xp",
+          "group": "images",
+          "name": "some-hero",
+          "title": "some hero",
+          "extension": "jpg",
+          "type": "attachment",
+          "width": 1800,
+          "height": 1350,
+          "_urls": {
+            "max": "https://picsum.photos/seed/hero/1600/1200",
+            "full": "https://picsum.photos/seed/hero/1140/850",
+            "two-thirds": "https://picsum.photos/seed/hero/760/570",
+            "one-half": "https://picsum.photos/seed/hero/570/428",
+            "one-third": "https://picsum.photos/seed/hero/380/285",
+            "one-sixth": "https://picsum.photos/seed/hero/190/143",
+            "original": "https://picsum.photos/seed/hero/1800/1350"
+          },
+          "srcset": "https://picsum.photos/seed/hero/1600/1200 1600w, https://picsum.photos/seed/hero/1140/850 1140w, https://picsum.photos/seed/hero/760/570 760w, https://picsum.photos/seed/hero/570/428 570w, https://picsum.photos/seed/hero/380/285 380w, https://picsum.photos/seed/hero/190/143 190w"
+
+        },
+        "title": "Hero Widget image",
+        "alt": "Hero Widget alt",
+        "slug": "image-laptop2",
+        "archived": false,
+        "type": "@apostrophecms/image",
+        "aposLocale": "en:draft",
+        "aposMode": "draft",
+        "aposDocId": "clgyx91c9000s3eh9b9ji3dto",
+        "metaType": "doc",
+        "visibility": "public"
+      }
+    ]
+  },
+  "split": {
+    "caption": "Hero Widget-Split Caption",
+    "ctaPrimary": 
+    {
+      "label": "Shop Now",
+      "urlType": "custom",
+      "url": "#urlCtaPrimary"
+    }
+  ,
+  "ctaOutlined": {
+      "label": "Explore",
+      "urlType": "page",
+      "_page": [
+      {
+        "_url": "#_page_urlCtaOutlined"
+      }
+    ]
+  },
+    "imagePosition": "left",
+    "_image": [
+      {
+        "_id": "clgyx91c9000s3eh9b9ji3dto:en:draft",
+        "attachment": {
+          "_id": "clgyx90ed000p3eh97uy897xp",
+          "group": "images",
+          "name": "some-hero",
+          "title": "some hero",
+          "extension": "jpg",
+          "type": "attachment",
+          "width": 1800,
+          "height": 1350,
+          "_urls": {
+            "max": "https://picsum.photos/seed/hero/1600/1200",
+            "full": "https://picsum.photos/seed/hero/1140/850",
+            "two-thirds": "https://picsum.photos/seed/hero/760/570",
+            "one-half": "https://picsum.photos/seed/hero/570/428",
+            "one-third": "https://picsum.photos/seed/hero/380/285",
+            "one-sixth": "https://picsum.photos/seed/hero/190/143",
+            "original": "https://picsum.photos/seed/hero/1800/1350"
+          },
+          "srcset": "https://picsum.photos/seed/hero/1600/1200 1600w, https://picsum.photos/seed/hero/1140/850 1140w, https://picsum.photos/seed/hero/760/570 760w, https://picsum.photos/seed/hero/570/428 570w, https://picsum.photos/seed/hero/380/285 380w, https://picsum.photos/seed/hero/190/143 190w"
+
+        },
+        "title": "Hero Widget image",
+        "alt": "Hero Widget alt",
+        "slug": "image-laptop2",
+        "archived": false,
+        "type": "@apostrophecms/image",
+        "aposLocale": "en:draft",
+        "aposMode": "draft",
+        "aposDocId": "clgyx91c9000s3eh9b9ji3dto",
+        "metaType": "doc",
+        "visibility": "public"
+      }
+    ]
+  }
+}

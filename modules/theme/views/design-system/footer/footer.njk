@@ -1,0 +1,26 @@
+{% extends dsPreview %}
+{% import "theme:footer.html" as footer %}
+
+{% block tagline %}
+Page Header
+{% endblock %}
+
+{% block preview %}
+  {% render footer.render(story.data) %}
+{% endblock %}
+
+{% block variants %}
+  {# container #}
+  <div class="mx-auto mb-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+    {# Code grid - 2 cols #}
+    <div class="grid grid-cols-2">
+    {% dscode 'njk' %}
+      {% import "theme:footer.html" as footer %}
+
+      {% render footer.render(config) %}
+    {% enddscode %}
+
+    {% dscode 'json', label = 'Data', parse = true %}{{ story.data | jsonPretty }}{% enddscode %}
+    </div>
+  </div>
+{% endblock %}
