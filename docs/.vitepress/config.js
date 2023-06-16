@@ -9,7 +9,7 @@ const repo = `apostrophecms/${project}`;
 export default defineConfig({
   base: `/${project}/`,
   title: "Starter Kit",
-  description: "Apostrophe CMS Starter Kit for e-commerce projects, built with Tailewind CSS.",
+  description: "Apostrophe CMS Starter Kit for e-commerce projects, built with Tailwind CSS.",
   appearance: true,
   themeConfig: {
     editLink: {
