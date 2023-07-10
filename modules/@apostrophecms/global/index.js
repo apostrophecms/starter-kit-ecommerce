@@ -4,7 +4,6 @@ const urlScheme = {
   label: {
     type: 'string',
     label: 'app:label'
-    // required: true
   },
   urlType: {
     label: 'app:type',
@@ -22,14 +21,12 @@ const urlScheme = {
         label: 'app:customUrl',
         value: 'custom'
       }
-    ],
-    def: 'page'
-    // required: true
+    ]
   },
   url: {
     type: 'url',
     label: 'app:url',
-    // required: true,
+    required: true,
     if: {
       urlType: 'custom'
     }
@@ -49,7 +46,7 @@ const urlScheme = {
         type: 1
       }
     },
-    // required: true,
+    required: true,
     if: {
       urlType: 'page'
     }
@@ -69,7 +66,7 @@ const urlScheme = {
         type: 1
       }
     },
-    // required: true,
+    required: true,
     if: {
       urlType: 'category'
     }
@@ -125,7 +122,6 @@ module.exports = {
               type: 'select',
               label: 'Icon',
               choices: 'choicesIcons',
-              // required: true,
               def: null
             },
             ...urlScheme

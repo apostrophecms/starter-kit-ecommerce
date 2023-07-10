@@ -56,6 +56,10 @@
     @apply m-0;
   }
 
+  .apos-input--select {
+    background-image: none;
+  }
+
   .app-pager {
     $this: &;
     @apply mt-4 md:mt-8 border-b border-gray text-lg text-center;

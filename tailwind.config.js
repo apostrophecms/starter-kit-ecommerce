@@ -37,7 +37,9 @@ module.exports = {
     'is_active',
     // Rich text color styles
     'text-brand',
-    'text-brand-300'
+    'text-brand-300',
+    // Apos select fix caused by form reset
+    'apos-input--select'
   ],
   corePlugins: {
     aspectRatio: false
