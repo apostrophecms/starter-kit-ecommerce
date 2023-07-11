@@ -132,8 +132,7 @@ module.exports = {
       },
       specs: {
         type: 'array',
-        // inline: true,
-        // style: 'table',
+        inline: true,
         label: 'app:productSpecsLabel',
         fields: {
           add: {

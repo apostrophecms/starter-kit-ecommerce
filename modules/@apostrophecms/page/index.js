@@ -39,7 +39,7 @@ module.exports = {
         type: '@apostrophecms/search',
         slug: '/search',
         _defaults: {
-          title: 'app:search'
+          title: 'Search'
         }
       }
     ]

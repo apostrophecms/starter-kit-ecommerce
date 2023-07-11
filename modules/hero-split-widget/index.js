@@ -26,13 +26,11 @@ const urlScheme = {
         value: 'custom'
       }
     ],
-    // required: true,
-    def: 'page'
+    required: true
   },
   url: {
     type: 'url',
     label: 'app:url',
-    // required: true,
     if: {
       urlType: 'custom'
     }
@@ -52,7 +50,7 @@ const urlScheme = {
         type: 1
       }
     },
-    // required: true,
+    required: true,
     if: {
       urlType: 'page'
     }
@@ -73,7 +71,7 @@ const urlScheme = {
         type: 1
       }
     },
-    // required: true,
+    required: true,
     if: {
       urlType: 'file'
     }
@@ -93,7 +91,7 @@ const urlScheme = {
         type: 1
       }
     },
-    // required: true,
+    required: true,
     if: {
       urlType: 'category'
     }
