@@ -78,7 +78,7 @@ The UI components are organized inside of macros or fragments. There is no need 
 
 Let's assume you want to add a new "accordion" feature. Here are the possible implementation steps:
 - Add your HTML markup as `modules/theme/views/accordion.html`. It is wise to use a `fragment` in order to render your markup (read further for more information why).
-- Add `modules/theme/ui/src/components/accordion.js` for your client side implementation. You can use vanilla JavaScript or third party library to deliver the feature based on the markup produced by `accordiong.html`.
+- Add `modules/theme/ui/src/components/accordion.js` for your client side implementation. You can use vanilla JavaScript or third party library to deliver the feature based on the markup produced by `accordion.html`.
 - One way to do it is to, e.g. `export { init }` in `accordion.js`. This method should read the DOM, find DOM elements of interest, and apply the desired client side logic. In this case, you also need to import and register your initialization logic:
 ```js
 // modules/theme/ui/src/index.js
