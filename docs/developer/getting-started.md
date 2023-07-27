@@ -72,7 +72,7 @@ npm run dev
 
 ## Initial configuration
 
-- Change the `shortName` value in your configuration in `app.js` note that installation using the CLI will complete this step automatically
+- Change the `shortName` value in your configuration in `app.js` note that installation using the CLI will complete this step automatically.
 ```js
 require('apostrophe')({
   shortName: 'my-project-name',
