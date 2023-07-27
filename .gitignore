@@ -18,3 +18,6 @@ node_modules
 # Auto generated icons sprite
 **/icons.svg.html
 **/icons.svg.json
+
+.package-lock.json
+
