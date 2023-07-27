@@ -24,7 +24,7 @@ You may see an initial screen of the MongoDB extensions. You can safely ignore i
 ## Local Installation
 
 ::: tip
-You will need the proper NodeJS environment, a MongoDB up and running, etc. Follow the [official documentation](https://v3.docs.apostrophecms.org/guide/setting-up.html) for more information.
+You will need the proper Node.js environment, a MongoDB up and running, etc. Follow the [official documentation](https://v3.docs.apostrophecms.org/guide/setting-up.html) for more information.
 :::
 
 ### Method 1
