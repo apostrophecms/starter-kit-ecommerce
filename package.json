@@ -43,7 +43,7 @@
     "type": "git",
     "url": "https://github.com/apostrophecms/starter-kit-ecommerce"
   },
-  "author": "Corllete ltd.",
+  "author": "Apostrophe Technologies",
   "license": "MIT",
   "dependencies": {
     "@apostrophecms/open-graph": "^1.2.1",
