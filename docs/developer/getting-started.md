@@ -23,6 +23,28 @@ You may see an initial screen of the MongoDB extensions. You can safely ignore i
 
 ## Local Installation
 
+::: tip
+You will need the proper Node.js environment, a MongoDB up and running, etc. Follow the [official documentation](https://v3.docs.apostrophecms.org/guide/setting-up.html) for more information.
+:::
+
+### Method 1
+
+1. If you haven't already, install the [Apostrophe CLI tool](https://v3.docs.apostrophecms.org/guide/setting-up.html#the-apostrophe-cli-tool) using 
+   ``` sh
+   npm install -g @apostrophecms/cli
+   ```
+   
+2. Clone the project locally by navigating to the parent directory you want the repo installed within and run the command:
+   ``` sh
+   apos create my-project-name --starter=ecommerce
+   ```
+3. Change to the new directory and run it:
+   ``` sh
+   npm run dev
+   ```
+
+### Method 2
+
 1. Choose "Use this template" button on the main repository page and create your own repository:
 
 ![Use Template GitHub](../images/use-gh-template.png)
@@ -48,20 +70,16 @@ npm update
 npm run dev
 ```
 
-::: tip
-You would need the proper NodeJS environment, a MongoDB up and running, etc. Follow the [official documentation](https://v3.docs.apostrophecms.org/guide/setting-up.html) for more information.
-:::
-
 ## Initial configuration
 
-- Change the `shortName` value in your configuration in `app.js`
+- Change the `shortName` value in your configuration in `app.js` note that installation using the CLI will complete this step automatically.
 ```js
 require('apostrophe')({
   shortName: 'my-project-name',
   // ...rest of the configuration
 });
 ```
-- The control for restarting the application on change (dev mode only) has been moved to `modules/theme/index.js` compared to the default `a3-boilerplate` application (`asset` module). If you want to disabled this feature:
+- The control for restarting the application on change (dev mode only) has been moved to `modules/theme/index.js` compared to the default `starter-kit-essentials` application (`asset` module). If you want to disable this feature:
 ```js
 // modules/theme/index.js
 handlers(self) {
@@ -87,11 +105,11 @@ npm run start
 
 ## Architecture
 
-The starter kit is a standard Apostrophe CMS application, built on top of the official [`a3-boilerplate`](https://github.com/apostrophecms/a3-boilerplate) template. All the modules (including widgets) can be found in the `modules/` folder. You can learn more about the modules in the [Modules & Widgets](./modules-and-widgets.md) section. 
+The starter kit is a standard Apostrophe CMS application, built on top of the official [`starter-kit-essentials`](https://github.com/apostrophecms/starter-kit-essentials) template. All the modules (including widgets) can be found in the `modules/` folder. You can learn more about the modules in the [Modules & Widgets](./modules-and-widgets.md) section. 
 
 The entire UI (except the product view page) lives in the `theme` module. The application uses a standard Tailwind CSS configuration. You can learn more in the [Branding & UI](./branding-and-ui.md) section.
 
-We have developed a tool for automated SVG sprites. It's seamlessly integrated and is explained in details in the [Branding & UI](./branding-and-ui.md) section.
+We have developed a tool for automated SVG sprites. It's seamlessly integrated and is explained in detail in the [Branding & UI](./branding-and-ui.md) section.
 
 
 
