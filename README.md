@@ -7,6 +7,8 @@ For more information and documentation visit https://apostrophecms.github.io/sta
 
 Learn how to run local documentation at [docs/README.md](docs/README.md).
 
+## Thanks
+
 ![Thanks to our partner Corlette](https://static.apostrophecms.com/apostrophecms/starter-kit-ecommerce/images/corllete-thanks.png)
 
 ### About Apostrophe
