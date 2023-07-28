@@ -15,7 +15,7 @@ ApostropheCMS is a powerful content management system designed for developers wh
 With its developer-friendly architecture, ApostropheCMS provides the flexibility and extensibility you need to build a simple blog, an enterprise-level website, or a complex web application.
 
 
-### Apostrophe starter kits
+## Apostrophe starter kits
 This Starter Kit was originally crafted by Corllete in partnership with Apostrophe. To learn more about Corllete visit [corllete.com](https://corllete.com). As with any open source project, this too is a community collaboration. We welcome feedback, tickets, bug fixes, and improvements.
 
 Want to upgrade your Starter Kit to Apostrophe Pro? [Get started here](https://apostrophecms.com/pro).
