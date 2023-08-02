@@ -9,6 +9,7 @@ Learn how to run local documentation at [docs/README.md](docs/README.md).
 
 ## Demo
 <video src="https://user-images.githubusercontent.com/1889830/257869016-8707f5d1-b6cd-4db8-a433-393641feb3a3.mp4" controls="controls" style="max-width: 730px;">
+</video>
 
 ## Thanks
 
