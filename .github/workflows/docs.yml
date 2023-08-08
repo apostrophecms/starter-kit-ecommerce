@@ -19,9 +19,9 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: npm
-      - run: cd docs && npm ci && cd ..
+      - run: cd docs && npm i && cd ..
       - name: Build
         run: cd docs && npm run build && cd ..
       - uses: actions/configure-pages@v2
