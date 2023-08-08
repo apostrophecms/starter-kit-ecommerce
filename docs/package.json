@@ -2,6 +2,7 @@
   "name": "docs",
   "version": "1.0.0",
   "description": "Docs",
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
