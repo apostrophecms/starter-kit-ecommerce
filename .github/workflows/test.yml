@@ -23,7 +23,7 @@ jobs:
           mongodb-version: 5.0
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm i
       - name: Test Production Build
         run: npm run build
       - name: Test
