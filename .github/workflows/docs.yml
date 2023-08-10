@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
+          # cache: npm
       - run: cd docs && npm i && cd ..
       - name: Build
         run: cd docs && npm run build && cd ..
