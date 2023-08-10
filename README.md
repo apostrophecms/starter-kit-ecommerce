@@ -3,9 +3,11 @@
 # E-commerce Starter Kit for ApostropheCMS
 An e-commerce Starter Kit for ApostropheCMS built with Tailwind CSS.
 
-For more information and documentation visit https://apostrophecms.github.io/starter-kit-ecommerce/.
+You can find the full documentation on how to use and extend this starter kit below:
+* [User Guide](https://apostrophecms.github.io/starter-kit-ecommerce/user/)
+* [Developer Guide](https://apostrophecms.github.io/starter-kit-ecommerce/developer/)
 
-Learn how to run local documentation at [docs/README.md](docs/README.md).
+If you prefer, you can follow [these steps](https://github.com/apostrophecms/starter-kit-ecommerce/blob/main/docs/README.md) to host the docs in your local environment.
 
 ## Demo
 <video src="https://user-images.githubusercontent.com/1889830/257869016-8707f5d1-b6cd-4db8-a433-393641feb3a3.mp4" controls="controls" style="max-width: 730px;">
