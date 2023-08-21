@@ -9,11 +9,11 @@ The Apostrophe CMS E-commerce Starter Kit comes with a set of widgets, that can 
 
 ## Hero Widgets
 
-It's available in dedicated "header" areas on Home page, Product Category page and Custom Pages. Furthermore, it comes in two variants - image aside and full width background image. Both variants have a wide range of customization options.
+It's available in dedicated "header" areas on Home page, Product Category page and Custom Pages. Furthermore, it comes in two variants - image aside and full-width background image. Both variants have a wide range of customization options.
 
 ### Full Width Background Image
 
-You can choose between dark/light background filter, add a background image, arrange title and tagline via embed rich text widget and even highlight a title word in a brand color. When doing the latter, watch out for the contrast between the background image and the title word. You can find the respective custom styles in the rich text editor (alongside the Heading and Paragraph styles):
+You can choose between dark/light background filters, add a background image, arrange title and tagline via embed rich text widget and even highlight a title word in a brand color. When doing the latter, watch out for the contrast between the background image and the title word. You can find the respective custom styles in the rich text editor (alongside the Heading and Paragraph styles):
 - **Color Brand Light** - appropriate when widget option "Dark" is enabled
 - **Color Brand Dark** - appropriate when widget option "Dark" is off (light background)
 
@@ -39,7 +39,7 @@ The same experience is available in the [Call to Action](#call-to-action-widget)
 
 ## Call To Action Widget
 
-The call to action widget is available on Home page, single Product Category and Product page and Custom Pages. It's a great way to highlight a product category or a product, or emphasize  a link to any page on your site. It supports CTA buttons in the same way as [descirbed here](#call-to-action-buttons).
+The call to action widget is available on Home page, single Product Category and Product page and Custom Pages. It's a great way to highlight a product category or a product, or emphasize a link to any page on your site. It supports CTA buttons in the same way as [described here](#call-to-action-buttons).
 
 You can choose between three variants.
 
@@ -57,9 +57,9 @@ You can choose between three variants.
 
 ## Promo Widget
 
-The promo widget is available on Home page, single Product Category and Product page and Custom Pages. It's a great way to promote any content, including product landing pages. It supports CTA buttons in the same way as [descirbed here](#call-to-action-buttons).
+The promo widget is available on Home page, single Product Category and Product page and Custom Pages. It's a great way to promote any content, including product landing pages. It supports CTA buttons in the same way as [described here](#call-to-action-buttons).
 
-You can set the image position among the other [standard options](#hero-widgets) descirbed in the above sections.
+You can set the image position among the other [standard options](#hero-widgets) described in the above sections.
 
 ### Image left
 
@@ -72,7 +72,7 @@ You can set the image position among the other [standard options](#hero-widgets)
 
 ## Product Widget
 
-An extremely flexible in terms of filtering/choosing content widget. It allows automated resolving of any number of products based on tag, recent date or category. I also has a manual mode where you can manually pick a product.
+An extremely flexible in terms of filtering/choosing content widget. It allows automated resolution of any number of products based on tag, recent date or category. It also has a manual mode where you can manually pick a product.
 
 You can choose between standard and condensed view, where the former shows products in the exactly same way as it's done on the product list page, while the latter shows more products per line (device optimized) and is more appropriate in the context of e.g. "related products".
 
