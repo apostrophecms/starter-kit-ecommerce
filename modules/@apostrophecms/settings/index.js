@@ -6,9 +6,6 @@ module.exports = {
         protection: true,
         reload: true
       },
-      adminLocale: {
-        fields: [ 'adminLocale' ]
-      },
       changePassword: {
         fields: [ 'password' ]
       }
@@ -18,10 +15,6 @@ module.exports = {
       account: {
         label: 'Account',
         subforms: [ 'title', 'changePassword' ]
-      },
-      preferences: {
-        label: 'Preferences',
-        subforms: [ 'adminLocale' ]
       }
     }
   }
