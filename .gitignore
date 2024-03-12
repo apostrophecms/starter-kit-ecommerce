@@ -1,4 +1,4 @@
-.package-lock
+package-lock.json
 /locales
 npm-debug.log
 /data
