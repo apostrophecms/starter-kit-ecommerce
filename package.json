@@ -48,7 +48,7 @@
   "dependencies": {
     "@apostrophecms/open-graph": "^1.2.1",
     "@apostrophecms/seo": "^1.2.0",
-    "apostrophe": "^3.53.0",
+    "apostrophe": "^4.0.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
