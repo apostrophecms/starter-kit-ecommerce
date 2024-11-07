@@ -1,4 +1,7 @@
-require('apostrophe')({
+import apostrophe from 'apostrophe';
+
+apostrophe({
+  root: import.meta,
   shortName: 'a3-ecommerce-starter',
   modules: {
     // Design system: register only when not in production.
@@ -28,6 +31,7 @@ require('apostrophe')({
     // ),
     // END Design system
 
+    '@apostrophecms/vite': {},
     '@apostrophecms/open-graph': {},
     '@apostrophecms/seo': {},
     i18n: {},

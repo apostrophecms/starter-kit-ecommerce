@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Apostrophe v3 eCommerce Starter Kit",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node app",
     "dev": "npm run build:sprite && nodemon",
@@ -48,7 +49,8 @@
   "dependencies": {
     "@apostrophecms/open-graph": "^1.2.1",
     "@apostrophecms/seo": "^1.2.0",
-    "apostrophe": "^4.0.0",
+    "@apostrophecms/vite": "github:apostrophecms/vite#pro-6694-breakpoint-preview-vite-ready",
+    "apostrophe": "github:apostrophecms/apostrophe#pro-6694-breakpoint-preview-vite-ready",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

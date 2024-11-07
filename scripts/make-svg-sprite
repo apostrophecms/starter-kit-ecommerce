@@ -7,10 +7,13 @@
 // used to auto-build icon choices for the schema and optionally
 // a preview in the design system.
 
-const path = require('path');
-const fs = require('fs');
-const svgstore = require('svgstore');
-const _ = require('lodash');
+import url from 'node:url';
+import path from 'node:path';
+import fs from 'node:fs';
+import svgstore from 'svgstore';
+import _ from 'lodash';
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 // --- CONFIGURE BELOW ---
 // Ignore svg's by name (e.g. ['logo.svg'])

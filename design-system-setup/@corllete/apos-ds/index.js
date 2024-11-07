@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   init(self) {
     // Custom filters, used in the design system only
     self.apos.template.addFilter({

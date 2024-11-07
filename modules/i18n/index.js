@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   i18n: {
     app: {
       browser: true

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: 'molecules-hero-widget',
   category: 'Widgets',
   data: 'data.json',

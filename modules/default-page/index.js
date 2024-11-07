@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   extend: '@apostrophecms/page-type',
   options: {
     label: 'app:defaultPage'

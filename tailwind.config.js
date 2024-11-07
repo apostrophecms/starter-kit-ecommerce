@@ -1,11 +1,14 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+import defaultTheme from 'tailwindcss/defaultTheme';
+import tailwindForms from '@tailwindcss/forms';
+import tailwindTypography from '@tailwindcss/typography';
+import tailwindAspectRatio from '@tailwindcss/aspect-ratio';
 
 // Brand colors, default Jelly bean
 const brand = process.env.APP_BRAND || 'default';
-const brandColors = require(`./colors/${brand}.json`);
+const brandColors = await import(`./colors/${brand}.json`) with { type: 'json' };
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     './views/**/*.html',
     // Do not process .njk files in production, as they are part
@@ -46,8 +49,8 @@ module.exports = {
   },
   // https://tailwindcss.com/docs/plugins#official-plugins
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio')
+    tailwindForms,
+    tailwindTypography,
+    tailwindAspectRatio
   ]
 };

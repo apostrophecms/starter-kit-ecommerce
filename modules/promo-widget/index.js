@@ -99,7 +99,7 @@ const urlScheme = {
   }
 };
 
-module.exports = {
+export default {
   extend: '@apostrophecms/widget-type',
   options: {
     label: 'app:promoWidget'

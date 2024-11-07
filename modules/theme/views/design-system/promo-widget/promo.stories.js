@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: 'molecules-promo-widget',
   category: 'Widgets',
   data: 'promo.json',
