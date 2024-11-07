@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import defaultTheme from 'tailwindcss/defaultTheme';
 import tailwindForms from '@tailwindcss/forms';
 import tailwindTypography from '@tailwindcss/typography';
@@ -5,7 +6,7 @@ import tailwindAspectRatio from '@tailwindcss/aspect-ratio';
 
 // Brand colors, default Jelly bean
 const brand = process.env.APP_BRAND || 'default';
-const brandColors = await import(`./colors/${brand}.json`) with { type: 'json' };
+const brandColors = JSON.parse(fs.readFileSync(`./colors/${brand}.json`));
 
 /** @type {import('tailwindcss').Config} */
 export default {
