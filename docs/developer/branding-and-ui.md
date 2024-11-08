@@ -147,18 +147,18 @@ A common mistake when working with Tailwind CSS is concatenating classes. The Nu
 
 ### Bootstrapping
 
-The Tailwind bootstrap file `modules/theme/ui/src/tailwind.scss` contains 
+The Tailwind bootstrap file `modules/theme/ui/src/tailwind.css` contains 
 - The Tailwind recommended setup (core components and utilities)
 - `base` layer, taking care of the global typography and adding some Apostrophe specific global styling (like `pager`).
 - `components` layer with some additional useful typography classes (`t-display`, `t-subtitle`, `t-caption`, `t-link`, `t-richtext`)
 
 ::: info
-The theme is using the core Tailwind `@tailwindcss/typography` plugin (`prose` class) to handle dynamic markup, provided by Apostrophe core `@apostrophecms/rich-text-widget`. This is done via the `className` option per instance of the widget. You can control the custom pages rich text behavior with just modifying the `.t-richtext` component in `modules/theme/ui/src/tailwind.scss`. Some widgets are using rich text in a specific context and are providing specific `className` instructions to their owned rich text instances.
+The theme is using the core Tailwind `@tailwindcss/typography` plugin (`prose` class) to handle dynamic markup, provided by Apostrophe core `@apostrophecms/rich-text-widget`. This is done via the `className` option per instance of the widget. You can control the custom pages rich text behavior with just modifying the `.t-richtext` component in `modules/theme/ui/src/tailwind.css`. Some widgets are using rich text in a specific context and are providing specific `className` instructions to their owned rich text instances.
 :::
 
 ### Font
 
-The configured in `tailwind.config.js` font `Inter var` is loaded in `modules/theme/ui/src/fonts.css`. The font itself can be found in `modules/theme/public/fonts`.
+The configured in `tailwind.config.js` font `Inter var` is loaded with inline style in `views/layout.html` to prevent the Flash of Unstyled Text (FOUT). You can replace it with your own font. The font itself can be found in `modules/theme/public/fonts`.
 
 ### Brand Color Scheme
 
