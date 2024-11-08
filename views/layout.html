@@ -15,6 +15,25 @@
   {%- if data.global.favicon -%}
   <link rel="icon" href="{{ data.global.favicon._url }}" />
   {%- endif -%}
+{# Avoid FOUC by preloading the font files #}
+<style>
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: 'Regular';
+  src: url("{{apos.asset.url('/modules/theme/fonts/inter-roman.var.woff2?v=3.19')}}") format("woff2");
+}
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+  font-named-instance: 'Italic';
+  src: url("{{apos.asset.url('/modules/theme/fonts/inter-italic.var.woff2?v=3.19')}}") format("woff2");
+}
+</style>
 {% endblock %}
 
 {% block beforeMain %}

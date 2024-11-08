@@ -50,7 +50,9 @@ export default {
   },
   // https://tailwindcss.com/docs/plugins#official-plugins
   plugins: [
-    tailwindForms,
+    tailwindForms({
+      strategy: 'class'
+    }),
     tailwindTypography,
     tailwindAspectRatio
   ]

@@ -14,7 +14,7 @@
     <section class="py-8 md:py-16">
       <form class="w-full flex items-center justify-center bg-gray-50 border border-gray rounded-md" data-apos-search-page-form method="GET" action="{{ data.url | e }}">
         <input type="search"
-        class="border-none w-full bg-transparent"
+        class="form-input border-none w-full bg-transparent"
           data-apos-search-field value="{{ data.query.q | e }}" name="q">
         {{ buttons.icon(
           'magnifying-glass', 

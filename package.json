@@ -1,7 +1,7 @@
 {
-  "name": "a3-ecommerce-starter",
+  "name": "a4-ecommerce-starter",
   "version": "1.0.0",
-  "description": "Apostrophe v3 eCommerce Starter Kit",
+  "description": "Apostrophe v4 eCommerce Starter Kit",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -29,16 +29,14 @@
       ".git"
     ],
     "ignore": [
+      "**/ui/",
       "public/uploads/",
       "public/apos-frontend/*.js",
       "data/",
       "docs/",
-      "design-system-setup/",
-      "**/ui/apos/",
-      "**/ui/src/",
-      "**/ui/public/"
+      "design-system-setup/"
     ],
-    "ext": "json, js, html, njk, scss, vue"
+    "ext": "json, js, cjs, html, njk"
   },
   "repository": {
     "type": "git",
@@ -49,7 +47,7 @@
   "dependencies": {
     "@apostrophecms/open-graph": "^1.2.1",
     "@apostrophecms/seo": "^1.2.0",
-    "@apostrophecms/vite": "github:apostrophecms/vite#pro-6694-breakpoint-preview-vite-ready",
+    "@apostrophecms/vite": "github:apostrophecms/vite",
     "apostrophe": "github:apostrophecms/apostrophe#pro-6694-breakpoint-preview-vite-ready",
     "lodash": "^4.17.21"
   },

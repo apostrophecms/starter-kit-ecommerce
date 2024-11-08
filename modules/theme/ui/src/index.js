@@ -1,6 +1,7 @@
 import { toggle as mobileNavToggle } from './components/mobile-nav.js';
 import { init as initGalleries } from './components/gallery.js';
 import { init as initTabs } from './components/tabs.js';
+import './tailwind.css';
 
 export default () => {
   const theme = window.apos.modules.theme || {};
