@@ -1,6 +1,6 @@
-import { toggle as mobileNavToggle } from './components/mobile-nav';
-import { init as initGalleries } from './components/gallery';
-import { init as initTabs } from './components/tabs';
+import { toggle as mobileNavToggle } from './components/mobile-nav.js';
+import { init as initGalleries } from './components/gallery.js';
+import { init as initTabs } from './components/tabs.js';
 
 export default () => {
   const theme = window.apos.modules.theme || {};
