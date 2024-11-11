@@ -48,7 +48,7 @@
     "@apostrophecms/open-graph": "^1.2.1",
     "@apostrophecms/seo": "^1.2.0",
     "@apostrophecms/vite": "github:apostrophecms/vite",
-    "apostrophe": "github:apostrophecms/apostrophe#pro-6694-breakpoint-preview-vite-ready",
+    "apostrophe": "github:apostrophecms/apostrophe",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
