@@ -55,6 +55,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.20",
     "chai": "^4.3.7",
     "chai-spies": "^1.0.0",
     "css-loader": "^6.7.3",
