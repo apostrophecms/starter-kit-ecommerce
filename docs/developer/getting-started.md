@@ -29,7 +29,7 @@ You will need the proper Node.js environment, a MongoDB up and running, etc. Fol
 
 ### Method 1
 
-1. If you haven't already, install the [Apostrophe CLI tool](https://v3.docs.apostrophecms.org/guide/setting-up.html#the-apostrophe-cli-tool) using
+1. If you haven't already, install the [Apostrophe CLI tool](https://docs.apostrophecms.org/guide/setting-up.html#the-apostrophe-cli-tool) using
 
    ``` sh
    npm install -g @apostrophecms/cli
