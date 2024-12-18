@@ -47,8 +47,8 @@
   "dependencies": {
     "@apostrophecms/open-graph": "^1.2.1",
     "@apostrophecms/seo": "^1.2.0",
-    "@apostrophecms/vite": "github:apostrophecms/vite",
-    "apostrophe": "github:apostrophecms/apostrophe",
+    "@apostrophecms/vite": "^1.0.0",
+    "apostrophe": "^4.11.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
