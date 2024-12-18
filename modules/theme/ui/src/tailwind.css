@@ -41,7 +41,7 @@
     font-bold;
   }
 
-  // Page layout
+  /* Page layout */
   .app {
     @apply min-h-screen;
     display: grid;
@@ -50,7 +50,7 @@
   }
 
 
-  // Apos/Tiptap specific
+  /* Apos/Tiptap specific */
 
   .t-richtext li > p {
     @apply m-0;
@@ -61,21 +61,20 @@
   }
 
   .app-pager {
-    $this: &;
     @apply mt-4 md:mt-8 border-b border-gray text-lg text-center;
+  }
 
-    &__item,
-    &__item > a {
-      display: inline-block;
-    }
+  .app-pager__item,
+  .app-pager__item > a {
+    display: inline-block;
+  }
 
-    &__item > a {
-      @apply p-4;
-    }
+  .app-pager__item > a {
+    @apply p-4;
+  }
 
-    &__item.is-active {
-      @apply p-4 border-b-[3px] border-brand;
-    }
+  .app-pager__item.is-active {
+    @apply p-4 border-b-[3px] border-brand;
   }
 }
 

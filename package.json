@@ -1,8 +1,9 @@
 {
-  "name": "a3-ecommerce-starter",
+  "name": "a4-ecommerce-starter",
   "version": "1.0.0",
-  "description": "Apostrophe v3 eCommerce Starter Kit",
+  "description": "Apostrophe v4 eCommerce Starter Kit",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node app",
     "dev": "npm run build:sprite && nodemon",
@@ -28,16 +29,14 @@
       ".git"
     ],
     "ignore": [
+      "**/ui/",
       "public/uploads/",
       "public/apos-frontend/*.js",
       "data/",
       "docs/",
-      "design-system-setup/",
-      "**/ui/apos/",
-      "**/ui/src/",
-      "**/ui/public/"
+      "design-system-setup/"
     ],
-    "ext": "json, js, html, njk, scss, vue"
+    "ext": "json, js, cjs, html, njk"
   },
   "repository": {
     "type": "git",
@@ -48,13 +47,15 @@
   "dependencies": {
     "@apostrophecms/open-graph": "^1.2.1",
     "@apostrophecms/seo": "^1.2.0",
-    "apostrophe": "^4.0.0",
+    "@apostrophecms/vite": "^1.0.0",
+    "apostrophe": "^4.11.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.20",
     "chai": "^4.3.7",
     "chai-spies": "^1.0.0",
     "css-loader": "^6.7.3",

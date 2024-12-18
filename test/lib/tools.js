@@ -1,7 +1,7 @@
-const chai = require('chai');
+import chai from 'chai';
 
 // Add Chai plugins here.
-const spies = require('chai-spies');
+import spies from 'chai-spies';
 
 chai.use(spies);
 
@@ -9,7 +9,7 @@ const should = chai.should();
 const expect = chai.expect;
 
 // A very simple single module mock processing.
-// `aposModule` is the original module object (e.g. `require('modules/theme')`).
+// `aposModule` is the original module object (e.g. `import('modules/theme/index.js')`).
 // `self` is an optional mock to be merged with the module.
 function processSelf(aposModule, self = {}) {
   const _self = {
@@ -29,7 +29,7 @@ function processSelf(aposModule, self = {}) {
   return _self;
 }
 
-module.exports = {
+export default {
   should,
   expect,
   chai,

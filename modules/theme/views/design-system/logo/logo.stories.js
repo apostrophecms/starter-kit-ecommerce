@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: 'atoms-logo',
   category: 'Media',
   stories: [

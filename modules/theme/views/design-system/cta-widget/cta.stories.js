@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: 'molecules-cta-widget',
   category: 'Widgets',
   data: 'data.json',

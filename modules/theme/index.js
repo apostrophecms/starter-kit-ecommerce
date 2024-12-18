@@ -1,7 +1,7 @@
+import fs from 'node:fs/promises';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-
-module.exports = {
+export default {
   options: {
     alias: 'theme'
   },
@@ -26,11 +26,10 @@ module.exports = {
     }
   },
 
-  init(self) {
+  async init(self) {
     // Icon metadata
-    self.svgIcons = [];
     try {
-      self.svgIcons = require('./icons/icons.svg.json');
+      self.svgIcons = JSON.parse(await fs.readFile('./icons/icons.svg.json'));
     } catch (e) {
       self.apos.util.warn('No SVG icons found. Run `./scripts/make-svg-sprite` to generate them.');
     }

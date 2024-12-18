@@ -78,7 +78,7 @@ const searchUrlScheme = {
 };
 delete searchUrlScheme.label;
 
-module.exports = {
+export default {
   fields: {
     add: {
       brandName: {

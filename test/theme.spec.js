@@ -1,11 +1,12 @@
-const assert = require('assert/strict');
+import assert from 'node:assert/strict';
+import tools from './lib/tools.js';
+import themeModule from '../modules/theme/index.js';
+
 const {
   processSelf,
   chai,
   expect
-} = require('./lib/tools');
-
-const themeModule = require('../modules/theme');
+} = tools;
 const svgIconsMock = [
   {
     label: 'Quote',

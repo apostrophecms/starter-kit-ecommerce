@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: 'organisms-footer',
   category: 'Page',
   stories: [

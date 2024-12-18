@@ -1,5 +1,8 @@
-require('apostrophe')({
-  shortName: 'a3-ecommerce-starter',
+import apostrophe from 'apostrophe';
+
+apostrophe({
+  root: import.meta,
+  shortName: 'a4-ecommerce-starter',
   modules: {
     // Design system: register only when not in production.
     // Install via `npm install @corllete/apos-ds` first.
@@ -28,6 +31,7 @@ require('apostrophe')({
     // ),
     // END Design system
 
+    '@apostrophecms/vite': {},
     '@apostrophecms/open-graph': {},
     '@apostrophecms/seo': {},
     i18n: {},

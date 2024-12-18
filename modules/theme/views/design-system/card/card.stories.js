@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: 'molecules-card',
   category: 'Cards',
   data: 'card.json',

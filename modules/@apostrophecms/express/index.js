@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   options: {
     session: {
       // Set a real secret!

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: 'atoms-buttons',
   category: 'Buttons',
   stories: [
