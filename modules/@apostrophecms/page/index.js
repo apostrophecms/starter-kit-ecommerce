@@ -28,6 +28,10 @@ export default {
         label: 'app:productCategoryLabel'
       },
       {
+        name: 'checkout-page',
+        label: 'app:checkoutPageLabel'
+      },
+      {
         name: '@apostrophecms/home-page',
         label: 'app:home'
       }

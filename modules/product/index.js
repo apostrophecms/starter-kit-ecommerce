@@ -66,7 +66,8 @@ export default {
       },
       buyNowUrl: {
         type: 'url',
-        label: 'app:productBuyNowUrlLabel'
+        label: 'app:productBuyNowUrlLabel',
+        hidden: true
       },
       image: {
         type: 'area',

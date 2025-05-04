@@ -40,13 +40,18 @@
             {{ __t('app:currency', { value: apos.theme.formatPrice(item.price) }) }}
           </span>
         </div>
-        {%- if item.buyNowUrl -%}
-          {{ buttons.primary(
-            __t('app:productBuyNowUrl'), 
-            href=item.buyNowUrl, 
-            { cls:'z-[1]' }
-          ) }}
-        {%- endif -%}
+        {{ buttons.primary(
+          'Buy Now with Stripe',
+          {
+            cls: 'stripe-checkout-button z-[1]',
+            data: {
+              'product-id': item._id,
+              'price': item.price,
+              'name': item.title,
+              'image': apos.attachment.url(apos.image.first(item.image or item._image or {}), { size: 'one-half' })
+            }
+          }
+        ) }}
       </div>
     </div>
 

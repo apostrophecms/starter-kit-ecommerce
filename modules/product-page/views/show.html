@@ -67,14 +67,19 @@
             </p>
           {%- endif -%}
         </div>
-
-        {%- if product.buyNowUrl -%}
-          {{ buttons.primary(
-            __t('app:productBuyNowUrl'),
-            href = product.buyNowUrl,
-            { large: true, cls: 'w-full mb-16' }
-          ) }}
-        {%- endif -%}
+        {# Stripe button #}
+        {{ buttons.primary(
+          'Buy Now with Stripe',
+          {
+            cls: 'stripe-checkout-button z-[1]',
+            data: {
+              'product-id': item._id,
+              'price': item.price,
+              'name': item.title,
+              'image': apos.attachment.url(apos.image.first(item.image or item._image or {}), { size: 'one-half' })
+            }
+          }
+        ) }}
 
         {# Data tabs #}
         {%- if data.query.specs -%}
