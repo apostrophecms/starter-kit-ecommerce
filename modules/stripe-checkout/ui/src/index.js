@@ -23,8 +23,6 @@ export default () => {
     const name = button.dataset.name;
     const image = button.dataset.image;
 
-    console.log('Checkout data:', { productId, price, name, image });
-
     // Show loading state
     button.disabled = true;
     const buttonSpan = button.querySelector('span');
@@ -34,7 +32,6 @@ export default () => {
     } else {
       button.textContent = 'Loading...';
     }
-
     try {
       // Call the public route instead of API route
       const response = await fetch('/stripe/create-checkout-session', {
@@ -45,7 +42,8 @@ export default () => {
         body: JSON.stringify({
           productId,
           price: parseFloat(price),
-          name
+          name,
+          image
         })
       });
 
@@ -84,14 +82,12 @@ export default () => {
 
   // Initialize on page load
   apos.util.onReady(() => {
-    console.log('Stripe checkout module loaded');
     initStripe();
 
     // Add click handlers to all Stripe checkout buttons
     document.addEventListener('click', (e) => {
       const button = e.target.closest('.stripe-checkout-button');
       if (button) {
-        console.log('Stripe checkout button clicked');
         e.preventDefault();
         handleCheckout(button);
       }
