@@ -4,7 +4,7 @@ export default () => {
 
   const initStripe = () => {
     if (window.stripePublishableKey) {
-      stripe = Stripe(window.stripePublishableKey);
+      stripe = window.Stripe(window.stripePublishableKey);
     } else {
       console.error('Stripe publishable key not found');
     }
@@ -17,15 +17,27 @@ export default () => {
       return;
     }
 
-    const { productId, price, name, image } = button.dataset;
+    // Get data attributes properly
+    const productId = button.dataset.productId;
+    const price = button.dataset.price;
+    const name = button.dataset.name;
+    const image = button.dataset.image;
+
+    console.log('Checkout data:', { productId, price, name, image });
 
     // Show loading state
     button.disabled = true;
-    button.textContent = 'Loading...';
+    const buttonSpan = button.querySelector('span');
+    const originalText = buttonSpan ? buttonSpan.textContent : button.textContent;
+    if (buttonSpan) {
+      buttonSpan.textContent = 'Loading...';
+    } else {
+      button.textContent = 'Loading...';
+    }
 
     try {
-      // Create checkout session on your server
-      const response = await fetch('/api/v1/stripe-checkout/create-checkout-session', {
+      // Call the public route instead of API route
+      const response = await fetch('/stripe/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -33,10 +45,15 @@ export default () => {
         body: JSON.stringify({
           productId,
           price: parseFloat(price),
-          name,
-          image
+          name
         })
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Server error:', errorData);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const { sessionId } = await response.json();
 
@@ -46,14 +63,22 @@ export default () => {
       });
 
       if (error) {
-        console.error('Error:', error);
+        console.error('Stripe redirect error:', error);
         button.disabled = false;
-        button.textContent = 'Buy Now with Stripe';
+        if (buttonSpan) {
+          buttonSpan.textContent = originalText;
+        } else {
+          button.textContent = originalText;
+        }
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error creating checkout session:', error);
       button.disabled = false;
-      button.textContent = 'Buy Now with Stripe';
+      if (buttonSpan) {
+        buttonSpan.textContent = originalText;
+      } else {
+        button.textContent = originalText;
+      }
     }
   };
 
@@ -64,10 +89,11 @@ export default () => {
 
     // Add click handlers to all Stripe checkout buttons
     document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('stripe-checkout-button')) {
+      const button = e.target.closest('.stripe-checkout-button');
+      if (button) {
         console.log('Stripe checkout button clicked');
         e.preventDefault();
-        handleCheckout(e.target);
+        handleCheckout(button);
       }
     });
   });

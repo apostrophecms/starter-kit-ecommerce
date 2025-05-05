@@ -46,9 +46,9 @@
             cls: 'stripe-checkout-button z-[1]',
             data: {
               'product-id': item._id,
-              'price': item.price,
+              'price': item.pricePromo or item.price,
               'name': item.title,
-              'image': apos.attachment.url(apos.image.first(item.image or item._image or {}), { size: 'one-half' })
+              'image': apos.attachment.url(attachment, { size: 'one-half' }) if attachment else ''
             }
           }
         ) }}
