@@ -24,25 +24,7 @@ export default {
           min: 1,
           max: 1,
           widgets: {
-            '@apostrophecms/rich-text': {
-              toolbar: [
-                'styles',
-                '|',
-                'bold',
-                'italic',
-                'strike',
-                'link',
-                '|',
-                'bulletList',
-                'orderedList'
-              ],
-              styles: [
-                {
-                  tag: 'p',
-                  label: 'Paragraph (P)'
-                }
-              ]
-            }
+            '@apostrophecms/rich-text': {}
           }
         },
         required: true
