@@ -159,39 +159,7 @@ export default {
           min: 1,
           max: 1,
           widgets: {
-            '@apostrophecms/rich-text': {
-              toolbar: [
-                'styles',
-                '|',
-                'bold',
-                'italic',
-                'strike',
-                'link',
-                '|',
-                'bulletList',
-                'orderedList'
-              ],
-              styles: [
-                {
-                  tag: 'h1',
-                  label: 'Heading'
-                },
-                {
-                  tag: 'span',
-                  class: 'text-brand-300',
-                  label: 'Color Brand Light'
-                },
-                {
-                  tag: 'span',
-                  class: 'text-brand',
-                  label: 'Color Brand Dark'
-                },
-                {
-                  tag: 'p',
-                  label: 'Paragraph (P)'
-                }
-              ]
-            }
+            '@apostrophecms/rich-text': {}
           }
         }
       }
