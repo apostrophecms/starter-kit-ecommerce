@@ -1,7 +1,7 @@
 {
-  "name": "a4-ecommerce-starter",
+  "name": "starter-kit-ecommerce",
   "version": "1.0.0",
-  "description": "Apostrophe v4 eCommerce Starter Kit",
+  "description": "ApostropheCMS ecommerce starter kit",
   "main": "app.js",
   "type": "module",
   "scripts": {
