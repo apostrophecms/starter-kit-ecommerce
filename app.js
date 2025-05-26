@@ -32,6 +32,17 @@ apostrophe({
     // ),
     // END Design system
 
+    '@apostrophecms/image-widget': {
+      options: {
+        inlineStyles: false,
+        className: 'image-widget'
+      }
+    },
+    '@apostrophecms/video-widget': {
+      options: {
+        className: 'my-5 md:my-10'
+      }
+    },
     '@apostrophecms/vite': {},
     '@apostrophecms/open-graph': {},
     '@apostrophecms/seo': {},
