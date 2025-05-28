@@ -43,7 +43,11 @@ export default {
     'text-brand',
     'text-brand-300',
     // Apos select fix caused by form reset
-    'apos-input--select'
+    'apos-input--select',
+    // Image widget internal classes
+    'image-widget__wrapper',
+    'image-widget__caption',
+    'image-widget'
   ],
   corePlugins: {
     aspectRatio: false

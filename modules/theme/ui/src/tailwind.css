@@ -76,6 +76,14 @@
   .app-pager__item.is-active {
     @apply p-4 border-b-[3px] border-brand;
   }
+
+  /* Image widget */
+  .image-widget__wrapper {
+    @apply my-5 md:my-10;
+  }
+  .image-widget__caption {
+    @apply mt-1 text-sm text-gray-600;
+  }
 }
 
 @layer components {

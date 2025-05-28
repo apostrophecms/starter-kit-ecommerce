@@ -38,12 +38,8 @@ export default {
                 }
               ]
             },
-            '@apostrophecms/image': {
-              className: 'my-5 md:my-10'
-            },
-            '@apostrophecms/video': {
-              className: 'my-5 md:my-10'
-            }
+            '@apostrophecms/image': {},
+            '@apostrophecms/video': {}
           }
         }
       }
