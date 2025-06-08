@@ -54,7 +54,7 @@ apostrophe({
     // All assets/client JS and server side templates.
     theme: {},
     // Stripe buy now components
-    'stripe-checkout': {},
+    'stripe-payment': {},
     'checkout-page': {}
   }
 });

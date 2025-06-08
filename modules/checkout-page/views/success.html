@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="checkout-success max-w-2xl mx-auto text-center py-16">
+  <div class="mb-8">
+    <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">Your Order Was Successful!</h1>
+    <p class="text-lg text-gray-600 mb-6">Thank you for your purchase. Your order has been processed successfully.</p>
+    {% if data.sessionId %}
+    <p class="text-sm text-gray-500 mb-8">Order ID: {{ data.sessionId }}</p>
+    {% endif %}
+  </div>
+  <a href="/" class="inline-block bg-brand text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-colors">
+    Continue Shopping
+  </a>
+</div>
+{% endblock %}

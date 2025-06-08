@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="checkout-cancel max-w-2xl mx-auto text-center py-16">
+  <div class="mb-8">
+    <svg class="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">Your Order Was Cancelled</h1>
+    <p class="text-lg text-gray-600 mb-8">Your payment was not processed. Please try again or contact us if you need assistance.</p>
+  </div>
+  <a href="/" class="inline-block bg-brand text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-colors">
+    Return to Store
+  </a>
+</div>
+{% endblock %}
