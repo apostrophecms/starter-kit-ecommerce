@@ -150,17 +150,6 @@ export default {
           max: 1,
           widgets: {
             '@apostrophecms/rich-text': {
-              toolbar: [
-                'styles',
-                '|',
-                'bold',
-                'italic',
-                'strike',
-                'link',
-                '|',
-                'bulletList',
-                'orderedList'
-              ],
               styles: [
                 {
                   tag: 'h1',
