@@ -125,7 +125,8 @@ export default {
                   tag: 'h4',
                   label: 'Heading 4 (H4)'
                 }
-              ]
+              ],
+              insert: []
             }
           }
         }
@@ -179,7 +180,8 @@ export default {
                         tag: 'p',
                         label: 'Paragraph (P)'
                       }
-                    ]
+                    ],
+                    insert: []
                   }
                 }
               },

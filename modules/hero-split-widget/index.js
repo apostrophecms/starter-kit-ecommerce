@@ -190,7 +190,8 @@ export default {
                   tag: 'p',
                   label: 'Paragraph (P)'
                 }
-              ]
+              ],
+              insert: []
             }
           }
         }
