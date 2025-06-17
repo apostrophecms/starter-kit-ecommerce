@@ -11,7 +11,7 @@ export default {
         options: {
           widgets: {
             '@apostrophecms/rich-text': {
-              className: 't-richtext my-5 md:my-10',
+              className: 't-richtext my-5 md:my-10'
             },
             '@apostrophecms/image': {
               className: 'my-5 md:my-10'
