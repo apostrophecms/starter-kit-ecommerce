@@ -152,7 +152,26 @@ export default {
           max: 1,
           min: 1,
           widgets: {
-            '@apostrophecms/rich-text': {}
+            '@apostrophecms/rich-text': {
+              toolbar: [
+                'styles',
+                '|',
+                'bold',
+                'italic',
+                'strike',
+                'link',
+                '|',
+                'bulletList',
+                'orderedList'
+              ],
+              styles: [
+                {
+                  tag: 'p',
+                  label: 'Paragraph (P)'
+                }
+              ],
+              insert: []
+            }
           }
         }
       },
