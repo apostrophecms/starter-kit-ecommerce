@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}Payment Successful - {{ data.global.siteName or 'Shop' }}{% endblock %}
+
+{% block main %}
+  <div class="container mx-auto px-4 py-12">
+    {% if data.hasSession and data.session %}
+      <!-- Successful Payment -->
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="mb-8">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-4">Payment Successful!</h1>
+          <p class="text-lg text-gray-600">Thank you for your purchase. Your order has been confirmed.</p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="bg-gray-50 rounded-lg p-6 mb-8 text-left">
+          <h2 class="text-xl font-semibold mb-4">Order Details</h2>
+          
+          <div class="space-y-3">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Order ID:</span>
+              <span class="font-mono text-sm">{{ data.session.id }}</span>
+            </div>
+            
+            {% if data.session.customer_email %}
+            <div class="flex justify-between">
+              <span class="text-gray-600">Email:</span>
+              <span>{{ data.session.customer_email }}</span>
+            </div>
+            {% endif %}
+
+            {% if data.session.customer_name %}
+            <div class="flex justify-between">
+              <span class="text-gray-600">Customer:</span>
+              <span>{{ data.session.customer_name }}</span>
+            </div>
+            {% endif %}
+
+            <div class="flex justify-between">
+              <span class="text-gray-600">Amount:</span>
+              <span class="font-semibold">
+                ${{ (data.session.amount_total / 100).toFixed(2) }} {{ data.session.currency.toUpperCase() }}
+              </span>
+            </div>
+
+            <div class="flex justify-between">
+              <span class="text-gray-600">Payment Status:</span>
+              <span class="capitalize text-green-600 font-medium">{{ data.session.payment_status }}</span>
+            </div>
+
+            {% if data.session.created_date %}
+            <div class="flex justify-between">
+              <span class="text-gray-600">Date:</span>
+              <span>{{ data.session.created_date }}</span>
+            </div>
+            {% endif %}
+          </div>
+
+        <!-- Next Steps -->
+        <div class="space-y-4">
+          <p class="text-gray-600">
+            A confirmation email has been sent to 
+            {% if data.session.customer_email %}
+              <strong>{{ data.session.customer_email }}</strong>
+            {% else %}
+              your email address
+            {% endif %}.
+          </p>
+
+        <div class="flex gap-4 justify-center">
+          {% if data.session.referrer_url %}
+            <a href="{{ data.session.referrer_url }}" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              Continue Shopping
+            </a>
+          {% endif %}
+
+          <a href="{{ data.session.product_url }}" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+              Return Home
+            </a>
+        </div>
+      </div>
+
+    {% elif data.error %}
+      <!-- Error State -->
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Payment Confirmation</h1>
+        <p class="text-lg text-gray-600 mb-8">{{ data.error }}</p>
+        <a href="/" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          Return Home
+        </a>
+      </div>
+
+    {% else %}
+      <!-- No Session Data -->
+      <div class="max-w-2xl mx-auto text-center">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Thank You!</h1>
+        <p class="text-lg text-gray-600 mb-8">Your payment has been processed successfully.</p>
+        <a href="/" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          Continue Shopping
+        </a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

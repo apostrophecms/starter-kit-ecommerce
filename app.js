@@ -1,4 +1,5 @@
 import apostrophe from 'apostrophe';
+import 'dotenv/config';
 
 apostrophe({
   root: import.meta,
@@ -51,6 +52,7 @@ apostrophe({
     'product-featured-widget': {},
     'product-category-widget': {},
     // All assets/client JS and server side templates.
-    theme: {}
+    theme: {},
+    // 'stripe-payment': {}
   }
 });
