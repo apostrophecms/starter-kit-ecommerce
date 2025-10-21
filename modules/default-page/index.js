@@ -46,6 +46,7 @@ export default {
         type: 'area',
         options: {
           widgets: {
+            '@apostrophecms/layout': {},
             product: {},
             'product-featured': {},
             'product-category': {},
