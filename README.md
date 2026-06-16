@@ -1,4 +1,11 @@
-[![Test](https://github.com/apostrophecms/starter-kit-ecommerce/actions/workflows/test.yml/badge.svg)](https://github.com/apostrophecms/starter-kit-ecommerce/actions/workflows/test.yml) [![Docs](https://github.com/apostrophecms/starter-kit-ecommerce/actions/workflows/docs.yml/badge.svg)](https://github.com/apostrophecms/starter-kit-ecommerce/actions/workflows/docs.yml)
+> [!WARNING]
+> **This repository is deprecated and no longer maintained.**
+>
+> We recommend migrating to one of our actively maintained ApostropheCMS starter kits:
+>
+> - **[Essentials](https://apostrophecms.com/docs/guide/apostrophe-standalone-essentials-overview.html)** — a clean, minimal starting point for standalone ApostropheCMS projects ([repo](https://github.com/apostrophecms/starter-kit-essentials))
+> - **[Demo](https://apostrophecms.com/docs/guide/apostrophe-demo-overview.html)** — a feature-rich reference implementation ([repo](https://github.com/apostrophecms/public-demo))
+
 
 # E-commerce Starter Kit for ApostropheCMS
 An e-commerce Starter Kit for ApostropheCMS built with Tailwind CSS.
